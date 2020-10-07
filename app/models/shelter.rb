@@ -1,3 +1,3 @@
-class Shelter < ApplicationController
+class Shelter < ApplicationRecord
 
 end
