@@ -8,7 +8,7 @@ describe "As a visitor" do
                                  city: "Denver",
                                  state: "CO",
                                  zip: "12345")
-      shelter_1 = Shelter.create(name: "Pepper's Shelter",
+      shelter_2 = Shelter.create(name: "Pepper's Shelter",
                                  address: "678 Happy St.",
                                  city: "Boulder",
                                  state: "CO",
@@ -22,6 +22,10 @@ describe "As a visitor" do
       expect(page).to have_content("#{shelter_1.city}")
       expect(page).to have_content("#{shelter_1.state}")
       expect(page).to have_content("#{shelter_1.zip}")
+      expect(page).to have_content("#{shelter_2.address}")
+      expect(page).to have_content("#{shelter_2.city}")
+      expect(page).to have_content("#{shelter_2.state}")
+      expect(page).to have_content("#{shelter_2.zip}")
     end
   end
 end
