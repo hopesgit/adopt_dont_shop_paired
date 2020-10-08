@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get '/', to: 'shelters#index'
   get '/shelters', to: 'shelters#index'
 
-  # get '/shelters/:id', to: 'shelter#show'
   get '/shelters/new', to: 'shelters#new'
   post '/shelters', to: 'shelters#create'
-
   get 'shelters/:id', to: 'shelters#show'
+  get 'shelters/:id/edit', to: 'shelters#edit'
+  patch 'shelters/:id', to: 'shelters#update'
 
 end
