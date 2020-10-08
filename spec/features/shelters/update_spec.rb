@@ -12,10 +12,14 @@ describe "As a visitor" do
 
       visit "/shelters/#{shelter_1.id}"
 
+      expect(page).to have_content("#{shelter_1.address}")
+      expect(page).to have_content("#{shelter_1.city}")
+      expect(page).to have_content("#{shelter_1.state}")
+      expect(page).to have_content("#{shelter_1.zip}")
 
       expect(page).to have_link("Update Shelter", href: "/shelters/#{shelter_1.id}/edit")
 
-      find("Update Shelter").click
+      click_link("Update Shelter", href: "/shelters/#{shelter_1.id}/edit")
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}/edit")
       expect(page).to have_field('shelter[name]')
