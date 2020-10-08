@@ -30,3 +30,28 @@ describe "As a visitor" do
     end
   end
 end
+
+describe "As a visitor" do
+  describe "When I fill out the form with updated information and I click the button to submit the form" do
+    it "Then a `PATCH` request is sent to '/shelters/:id', the shelter's info is updated, and I am redirected to the Shelter's Show page where I see the shelter's updated info" do
+
+      shelter_1 = Shelter.create(name: "Kali's Shelter",
+                                 address: "123 Main St.",
+                                 city: "Denver",
+                                 state: "CO",
+                                 zip: "12345")
+
+      visit "/shelters/#{shelter_1.id}/edit"
+
+      fill_in('shelter[name]', :with => 'My Shelter')
+      fill_in('shelter[address]', :with => '123 Main St.')
+      fill_in('shelter[city]', :with => 'Los Gatos')
+      fill_in('shelter[state]', :with => 'CA')
+      fill_in('shelter[zip]', :with => '94245')
+      find('[type=submit]').click
+
+      expect(current_path).to eq("/shelters/#{shelter_1.id}")
+      expect(page).to have_content("94245")
+    end
+  end
+end
