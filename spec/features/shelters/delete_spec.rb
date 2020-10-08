@@ -16,7 +16,7 @@ describe "As a visitor" do
 
       click_link("Delete Shelter", href: "/shelters/#{shelter_1.id}/delete")
 
-      expect(current_path).to eq("/shelters/#{shelter_1.id}/edit")
+      expect(current_path).to eq("/shelters")
       expect(page).not_to have_content("#{shelter_1.name}")
       expect(page).not_to have_content("#{shelter_1.address}")
       expect(page).not_to have_content("#{shelter_1.city}")
