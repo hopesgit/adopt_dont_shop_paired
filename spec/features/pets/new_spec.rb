@@ -7,6 +7,14 @@ require 'rails_helper'
                                  city: "Denver",
                                 state: "CO",
                                   zip: "12345")
+      pet_1 = shelter_1.pets.create(name: "Kali",
+                                     age: 2,
+                                     sex: "female",
+                                   image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+      pet_2 = shelter_1.pets.create(name: "Pepper",
+                                     age: 3,
+                                     sex: "male",
+                                   image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
 
       visit "/shelters/#{shelter_1.id}/pets"
 
@@ -21,6 +29,14 @@ require 'rails_helper'
                                  city: "Denver",
                                 state: "CO",
                                   zip: "12345")
+      pet_1 = shelter_1.pets.create(name: "Kali",
+                                     age: 2,
+                                     sex: "female",
+                                    image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+      pet_2 = shelter_1.pets.create(name: "Pepper",
+                                     age: 3,
+                                     sex: "male",
+                                   image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
 
       visit "/shelters/#{shelter_1.id}/pets/new"
 
@@ -31,7 +47,7 @@ require 'rails_helper'
       fill_in('pet[sex]', :with => 'male')
       find('[type=submit]').click
 
-      expect(current_path).to eq('/shelters/#{shelter_1.id}/pets')
+      expect(current_path).to eq("/shelters/#{shelter_1.id}/pets")
       expect(page).to have_content("Skittles")
       expect(page).to have_content("fluffy dog")
       expect(page).to have_content("male")

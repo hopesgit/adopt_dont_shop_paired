@@ -18,10 +18,6 @@ class PetsController < ApplicationController
     redirect_to "/shelters/:id/pets"
   end
 
-  def shelter_index
-    @pets = Pet.where("shelter_id = ?", params[:id])
-  end
-
   def show
     @pet = Pet.find(params[:id])
   end
