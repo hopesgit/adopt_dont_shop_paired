@@ -10,7 +10,7 @@ require 'rails_helper'
 
       visit "/shelters/#{shelter_1.id}/pets"
 
-      expect(page).to have_link("Create Pet", href: '/pets/new')
+      expect(page).to have_link("Create Pet", href: "/shelters/#{shelter_1.id}/pets/new")
     end
   end
 

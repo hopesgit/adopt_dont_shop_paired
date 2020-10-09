@@ -14,8 +14,8 @@ class SheltersController < ApplicationController
       state: params[:shelter][:state],
       zip: params[:shelter][:zip]
       })
-      shelter.save
-      redirect_to '/shelters'
+    shelter.save
+    redirect_to '/shelters'
   end
 
   def show

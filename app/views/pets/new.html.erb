@@ -1,0 +1,16 @@
+<h1>Add a Pet for Adoption</h1>
+
+<form action="/shelters/:id/pets" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Name:</p>
+  <input type='text' name='pet[name]'/><br/>
+  <p>Description:</p>
+  <input type='text' name='pet[description]'/"><br/>
+  <p>Age:</p>
+  <input type='text' name='pet[age]'/><br/>
+  <p>Sex:</p>
+  <input type='text' name='pet[sex]'/><br/>
+  <p>Image URL:</p>
+  <input type='text' name='pet[image]'/><br/><br/>
+  <input type='submit'/>
+</form>
