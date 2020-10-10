@@ -3,6 +3,6 @@
 <p>Address: <br><%= @shelter.address %><br>
   <%= @shelter.city %>, <%= @shelter.state %>, <%= @shelter.zip %></p>
 
-<a href="/shelters/<%= @shelter.id %>/edit">Update Shelter</a>
+<%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %>
 <br/>
 <a href="/shelters/<%= @shelter.id %>/delete">Delete Shelter</a>

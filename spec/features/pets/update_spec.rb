@@ -45,15 +45,16 @@ describe "When I click the button to submit the form 'Update Pet'" do
     visit "/pets/#{pet_1.id}/edit"
 
     fill_in('name', :with => 'Kali')
-    fill_in('description', :with => 'cute and sassy')
+    fill_in('description', :with => 'tough guy')
     fill_in('age', :with => '2')
     fill_in('sex', :with => 'female')
     fill_in('image', :with => 'https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg')
-    find('[type=submit]').click
+
+    click_on 'Update Pet'
 
     expect(current_path).to eq("/pets/#{pet_1.id}")
     expect(page).to have_content("Kali")
-    expect(page).to have_content("cute and sassy")
+    expect(page).to have_content("tough guy")
     expect(page).to have_content("2")
     expect(page).to have_content("female")
     expect(page).to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
