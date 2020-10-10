@@ -1,17 +1,15 @@
 <h1>Add a Pet for Adoption</h1>
 
-<form action="/shelters/:id/pets" method="post"> 
-  <!-- @pets = Shelter.find(params[:id]).pets -->
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <p>Name:</p>
-  <input type='text' name='pet[name]'/><br/>
-  <p>Description:</p>
-  <input type='text' name='pet[description]'/"><br/>
-  <p>Age:</p>
-  <input type='text' name='pet[age]'/><br/>
-  <p>Sex:</p>
-  <input type='text' name='pet[sex]'/><br/>
-  <p>Image URL:</p>
-  <input type='text' name='pet[image]'/><br/><br/>
-  <input type='submit'/>
-</form>
+<%= form_tag '/shelters/:id/pets' do %>
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
+    <%= label_tag :description %>
+    <%= text_field_tag :description %>
+    <%= label_tag :age %>
+    <%= text_field_tag :age %>
+    <%= label_tag :sex %>
+    <%= text_field_tag :sex %>
+    <%= label_tag :image %>
+    <%= text_field_tag :image %>
+    <%= submit_tag 'Create Pet' %>
+  <% end %>

@@ -40,12 +40,12 @@ require 'rails_helper'
 
       visit "/shelters/#{shelter_1.id}/pets/new"
 
-      fill_in('pet[name]', :with => 'Skittles')
-      fill_in('pet[description]', :with => 'fluffy dog')
-      fill_in('pet[image]', :with => 'https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg')
-      fill_in('pet[age]', :with => '5')
-      fill_in('pet[sex]', :with => 'male')
-      find('[type=submit]').click
+      fill_in('name', :with => 'Skittles')
+      fill_in('description', :with => 'fluffy dog')
+      fill_in('image', :with => 'https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg')
+      fill_in('age', :with => '5')
+      fill_in('sex', :with => 'male')
+      click_on 'Create Pet'
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}/pets")
       expect(page).to have_content("Skittles")
