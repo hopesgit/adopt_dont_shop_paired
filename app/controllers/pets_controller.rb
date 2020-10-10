@@ -8,11 +8,11 @@ class PetsController < ApplicationController
 
   def create
     pet = Pet.new({
-      name: params[:pet][:name],
-      description: params[:pet][:description],
-      age: params[:pet][:age],
-      sex: params[:pet][:sex],
-      image: params[:pet][:image]
+      name: params[:name],
+      description: params[:description],
+      age: params[:age],
+      sex: params[:sex],
+      image: params[:image]
       })
     pet.save
     redirect_to "/shelters/:id/pets"
