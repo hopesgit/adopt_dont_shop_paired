@@ -51,6 +51,7 @@ require 'rails_helper'
       expect(page).to have_content("Skittles")
       expect(page).to have_content("fluffy dog")
       expect(page).to have_content("male")
+      expect(page).to have_content("Status: Adoptable")
       expect(page).to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
     end
   end
