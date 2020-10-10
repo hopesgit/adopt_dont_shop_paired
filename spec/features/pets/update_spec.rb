@@ -20,11 +20,11 @@ describe "As a visitor" do
 
       expect(current_path).to eq("/pets/#{pet_1.id}/edit")
 
-      expect(page).to have_field('pet[name]')
-      expect(page).to have_field('pet[description]')
-      expect(page).to have_field('pet[age]')
-      expect(page).to have_field('pet[sex]')
-      expect(page).to have_field('pet[image]')
+      expect(page).to have_field('name')
+      expect(page).to have_field('description')
+      expect(page).to have_field('age')
+      expect(page).to have_field('sex')
+      expect(page).to have_field('image')
     end
   end
 end
@@ -44,11 +44,11 @@ describe "When I click the button to submit the form 'Update Pet'" do
 
     visit "/pets/#{pet_1.id}/edit"
 
-    fill_in('pet[name]', :with => 'Kali')
-    fill_in('pet[description]', :with => 'cute and sassy')
-    fill_in('pet[age]', :with => '2')
-    fill_in('pet[sex]', :with => 'female')
-    fill_in('pet[image]', :with => 'https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg')
+    fill_in('name', :with => 'Kali')
+    fill_in('description', :with => 'cute and sassy')
+    fill_in('age', :with => '2')
+    fill_in('sex', :with => 'female')
+    fill_in('image', :with => 'https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg')
     find('[type=submit]').click
 
     expect(current_path).to eq("/pets/#{pet_1.id}")
