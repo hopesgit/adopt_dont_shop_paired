@@ -1,18 +1,35 @@
-<h1>Create a new Shelter</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shelters</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<%= link_to 'Pets', '/pets' %><br>
-<%= link_to 'Shelters', '/shelters' %><br><br>
+<body>
 
-<%= form_tag '/shelters' do %>
-  <%= label_tag :name %>
-  <%= text_field_tag :name %><br/><br/>
-  <%= label_tag :address %>
-  <%= text_field_tag :address %><br/><br/>
-  <%= label_tag :city %>
-  <%= text_field_tag :city %><br/><br/>
-  <%= label_tag :state %>
-  <%= text_field_tag :state %><br/><br/>
-  <%= label_tag :zip %>
-  <%= text_field_tag :zip %><br/><br/>
-  <%= submit_tag 'New Shelter' %>
-<% end %>
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+  <h1>Create a new Shelter</h1>
+  <%= form_tag '/shelters' do %>
+    <%= label_tag :name %>
+    <%= text_field_tag :name %><br/><br/>
+    <%= label_tag :address %>
+    <%= text_field_tag :address %><br/><br/>
+    <%= label_tag :city %>
+    <%= text_field_tag :city %><br/><br/>
+    <%= label_tag :state %>
+    <%= text_field_tag :state %><br/><br/>
+    <%= label_tag :zip %>
+    <%= text_field_tag :zip %><br/><br/>
+    <%= submit_tag 'New Shelter' %>
+  <% end %>
+</div>
+
+</body>
+
+</html>

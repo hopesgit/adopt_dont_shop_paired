@@ -1,13 +1,27 @@
-<h1>Shelters</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shelters</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<%= link_to 'Pets', '/pets' %><br>
+<body>
 
-<a href='/shelters/new'>New Shelter</a><br><br>
+<div class="topnav">
+  <a href="/pets">Pets</a>
+</div>
 
-<% @shelters.each do |shelter| %>
-    <h3><a href="/shelters/<%= shelter.id %>"><%= shelter.name %></a></h3>
-    <p>Address: <br><%= shelter.address %><br>
-      <%= shelter.city %>, <%= shelter.state %> <%= shelter.zip %></p>
+<div class="content">
+  <h1>Shelters</h1>
+  <a href='/shelters/new' class="new">New Shelter</a><br><br>
+  <% @shelters.each do |shelter| %>
+  <h3><a href="/shelters/<%= shelter.id %>"><%= shelter.name %></a></h3>
+  <p>Address: <br><%= shelter.address %><br>
+    <%= shelter.city %>, <%= shelter.state %> <%= shelter.zip %></p>
     <p class="update"><%= link_to 'Update Shelter', "/shelters/#{shelter.id}/edit" %></p>
     <p class="delete"><%= link_to 'Delete Shelter', "/shelters/#{shelter.id}/delete" %></p><br>
-<% end %>
+    <% end %>
+</div>
+
+</html>
