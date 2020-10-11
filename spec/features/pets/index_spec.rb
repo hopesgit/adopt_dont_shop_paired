@@ -119,3 +119,11 @@ describe "when I visit '/pets'" do
     expect(page).to have_link("Dave's Shelter", href: "/shelters/#{shelter_2.id}")
   end
 end
+
+describe "when I visit the Pets Index Page" do
+  it "there is a link at the top to the Shelter Index Page" do
+    visit '/pets'
+
+    expect(page).to have_link("Shelters", href: '/shelters')
+  end
+end
