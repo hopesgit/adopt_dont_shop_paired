@@ -3,7 +3,7 @@
 <a href="/shelters/<%= @shelter.id %>/pets/new">Create Pet</a>
 
 <h3><% @shelter.pets.each do |pet| %></h3>
-  <h2><%= pet.name %></h2>
+  <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
   <p>Description: <%= pet.description %></p>
   <p>Age: <%= pet.age %></p>
   <p>Sex: <%= pet.sex %></p>
