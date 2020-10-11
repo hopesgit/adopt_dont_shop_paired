@@ -1,7 +1,21 @@
-<h1>Add a Pet for Adoption</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shelters</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<%= link_to 'Pets', '/pets' %><br>
-<%= link_to 'Shelters', '/shelters' %><br><br>
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+
+<h1>Add a Pet for Adoption</h1>
 
 <%= form_tag "/shelters/#{params[:id]}/pets" do %>
     <%= label_tag :name %>
@@ -16,3 +30,7 @@
     <%= text_field_tag :image %><br/><br/>
     <%= submit_tag 'Create Pet' %>
   <% end %>
+
+</div>
+
+</html>

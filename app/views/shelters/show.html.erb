@@ -1,13 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shelters</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+
 <h1><%= @shelter.name %></h1>
 
-<%= link_to 'Pets', '/pets' %><br>
-<%= link_to 'Shelters', '/shelters' %><br><br>
-
-<h2><%= link_to 'Pets at this Shelter', "/shelters/#{@shelter.id}/pets" %><br><br></h2>
+<h3><%= link_to 'Pets at this Shelter', "/shelters/#{@shelter.id}/pets" %><br><br></h3>
 
 <p>Address: <br><%= @shelter.address %><br>
   <%= @shelter.city %>, <%= @shelter.state %>, <%= @shelter.zip %></p>
 
-<%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %>
-<br/>
-<%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}/delete" %>
+<p class="update"><%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %></p>
+
+<p class="delete"><%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}/delete" %></p>
+
+</div>
+
+</html>
