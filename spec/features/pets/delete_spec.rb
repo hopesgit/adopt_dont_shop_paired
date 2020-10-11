@@ -19,7 +19,7 @@ describe "As a visitor" do
 
       click_link("Delete Pet", href: "/pets/#{pet_1.id}/delete")
 
-      expect(current_path).to eq("/pets/")
+      expect(current_path).to eq("/pets")
       expect(page).not_to have_content("#{pet_1.name}")
       expect(page).not_to have_content("#{pet_1.age}")
       expect(page).not_to have_content("#{pet_1.image}")
