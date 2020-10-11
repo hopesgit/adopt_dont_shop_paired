@@ -57,7 +57,7 @@ require 'rails_helper'
   end
 
   describe "when I visit the New Pet Page" do
-    it "there is a link at the top to the Pets Index Page" do
+    it "there is a link at the top to the Pets Index Page and Shelters Index page" do
       shelter_1 = Shelter.create(name: "Kali's Shelter",
                               address: "123 Main St.",
                                  city: "Denver",
@@ -67,5 +67,6 @@ require 'rails_helper'
       visit "/shelters/#{shelter_1.id}/pets/new"
 
       expect(page).to have_link("Pets", href: '/pets')
+      expect(page).to have_link("Shelters", href: '/shelters')
     end
   end
