@@ -68,6 +68,10 @@ describe "Next to every shelter, I see a link to edit that shelter's info and on
 
     visit '/shelters'
     click_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")
+    page.accept_alert 'Are you sure you want to delete this shelter?' do
+      click_button('Search')
+    end
+
     expect(page).not_to have_content("Pepper's Shelter")
   end
 end
