@@ -15,6 +15,7 @@
 
 <div class="content">
   <h1>Pets at <%= @shelter.name %></h1>
+  <p>Adoptable Pets: <%= @shelter.pets.count %></p>
   <a href="/shelters/<%= @shelter.id %>/pets/new" class="new">Create Pet</a>
   <h3><% @shelter.pets.each do |pet| %></h3>
     <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
