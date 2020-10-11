@@ -16,14 +16,18 @@ describe "As a visitor" do
     it "Then a `POST` request is sent to '/shelters', a new shelter is created, and I am redirected to the Shelter Index page where I see the new Shelter listed." do
 
       visit "/shelters/new"
-      fill_in('shelter[name]', :with => 'Shelter Name')
-      fill_in('shelter[address]', :with => '123 Main St.')
-      fill_in('shelter[city]', :with => 'San Francisco')
-      fill_in('shelter[state]', :with => 'CA')
-      fill_in('shelter[zip]', :with => '94115')
-      find('[type=submit]').click
+      fill_in('name', :with => 'Shelter Name')
+      fill_in('address', :with => '123 Main St.')
+      fill_in('city', :with => 'San Francisco')
+      fill_in('state', :with => 'CA')
+      fill_in('zip', :with => '94115')
+      click_on 'New Shelter'
 
       expect(current_path).to eq('/shelters')
+      expect(page).to have_content("Shelter Name")
+      expect(page).to have_content("123 Main St.")
+      expect(page).to have_content("San Francisco")
+      expect(page).to have_content("CA")
       expect(page).to have_content("94115")
     end
   end
