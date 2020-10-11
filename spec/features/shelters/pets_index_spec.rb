@@ -118,7 +118,6 @@ describe "when I visit the Shelters Pets Index Page" do
 
     visit "/shelters/#{shelter_1.id}/pets"
 
-
     expect(page).to have_link("Pets", href: '/pets')
     expect(page).to have_link("Shelters", href: '/shelters')
   end

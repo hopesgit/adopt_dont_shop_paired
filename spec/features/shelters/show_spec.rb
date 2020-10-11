@@ -20,7 +20,7 @@ describe "As a visitor" do
 end
 
 describe "when I visit the Shelters Show Page" do
-  it "there is a link at the top to the Pets Index Page" do
+  it "there is a link at the top to the Pets Index Page and the Shelters Index page" do
     shelter_1 = Shelter.create(name: "Kali's Shelter",
                             address: "123 Main St.",
                                city: "Denver",
@@ -30,5 +30,6 @@ describe "when I visit the Shelters Show Page" do
     visit "/shelters/#{shelter_1.id}"
 
     expect(page).to have_link("Pets", href: '/pets')
+    expect(page).to have_link("Shelters", href: '/shelters')
   end
 end
