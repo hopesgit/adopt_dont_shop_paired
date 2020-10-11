@@ -15,7 +15,8 @@ describe "As a visitor" do
   describe "When I fill out the form with a new shelter's: name, address, city, state, zip, And I click the button 'Create Shelter' to submit the form" do
     it "Then a `POST` request is sent to '/shelters', a new shelter is created, and I am redirected to the Shelter Index page where I see the new Shelter listed." do
 
-      visit "/shelters/new"
+      visit "/shelters"
+      click_link("New Shelter")
       fill_in('name', :with => 'Shelter Name')
       fill_in('address', :with => '123 Main St.')
       fill_in('city', :with => 'San Francisco')

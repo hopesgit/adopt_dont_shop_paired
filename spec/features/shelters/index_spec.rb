@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "As a visitor" do
   describe "when I visit '/shelters'" do
-    it "I see the name of each shelter in the system" do
+    it "I see the name of each shelter in the system along with its full address" do
       shelter_1 = Shelter.create(name: "Kali's Shelter",
                               address: "123 Main St.",
                                  city: "Denver",
@@ -18,10 +18,12 @@ describe "As a visitor" do
 
       expect(page).to have_content("Shelters")
       expect(page).to have_content("Address: ")
+      expect(page).to have_content("#{shelter_1.name}")
       expect(page).to have_content("#{shelter_1.address}")
       expect(page).to have_content("#{shelter_1.city}")
       expect(page).to have_content("#{shelter_1.state}")
       expect(page).to have_content("#{shelter_1.zip}")
+      expect(page).to have_content("#{shelter_2.name}")
       expect(page).to have_content("#{shelter_2.address}")
       expect(page).to have_content("#{shelter_2.city}")
       expect(page).to have_content("#{shelter_2.state}")

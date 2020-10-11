@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "As a visitor" do
   describe "when I visit the shelter show page" do
-    it "I see a link to update the shelter \"Update Shelter\", When I click the link \"Update Shelter\", Then I am taken to '/shelters/:id/edit' where I  see a form to edit the shelter's data including: name, address, city, state, zip" do
+    it "I see a link to update the shelter 'Update Shelter', When I click the link 'Update Shelter', Then I am taken to '/shelters/:id/edit' where I  see a form to edit the shelter's data including: name, address, city, state, zip" do
 
       shelter_1 = Shelter.create(name: "Kali's Shelter",
                               address: "123 Main St.",
@@ -12,11 +12,7 @@ describe "As a visitor" do
 
       visit "/shelters/#{shelter_1.id}"
 
-      expect(page).to have_content("#{shelter_1.address}")
-      expect(page).to have_content("#{shelter_1.city}")
-      expect(page).to have_content("#{shelter_1.state}")
-      expect(page).to have_content("#{shelter_1.zip}")
-
+      expect(page).to have_content("#{shelter_1.name}")
       expect(page).to have_link("Update Shelter", href: "/shelters/#{shelter_1.id}/edit")
 
       click_link("Update Shelter", href: "/shelters/#{shelter_1.id}/edit")
@@ -52,7 +48,12 @@ describe "As a visitor" do
       click_on 'Update Shelter'
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}")
+      expect(page).to have_content("My Shelter")
+      expect(page).to have_content("Los Gatos")
+      expect(page).to have_content("CA")
       expect(page).to have_content("94245")
+      expect(page).not_to have_content("Kali's Shelter")
+      expect(page).not_to have_content("Denver")
     end
   end
 end
