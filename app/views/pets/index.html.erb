@@ -6,4 +6,5 @@
   <p>Sex: <%= pet.sex %></p>
   <img src="<%= pet.image %>" alt="pet photo">
   <p>Located at: <%= pet.shelter.name %></p>
+  <p class="update"><%= link_to 'Update Pet', "/pets/#{pet.id}/edit" %></p>
 <% end %>
