@@ -3,6 +3,8 @@
 <%= link_to 'Pets', '/pets' %><br>
 <%= link_to 'Shelters', '/shelters' %><br><br>
 
+<h2><%= link_to 'Pets at this Shelter', "/shelters/#{@shelter.id}/pets" %><br><br></h2>
+
 <p>Address: <br><%= @shelter.address %><br>
   <%= @shelter.city %>, <%= @shelter.state %>, <%= @shelter.zip %></p>
 
