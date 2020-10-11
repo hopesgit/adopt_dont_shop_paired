@@ -30,8 +30,8 @@ describe "As a visitor" do
   end
 end
 
-describe "Next to every shelter, I see a link to edit that shelter's info" do
-  it "when I click the link I should be taken to that shelters edit page where I can update its information" do
+describe "Next to every shelter, I see a link to edit that shelter's info and one to delete the shelter" do
+  it "when I click the edit link I should be taken to that shelters edit page where I can update its information, and if I click delete I am returned to the Shelter Index Page where I no longer see that shelter" do
     shelter_1 = Shelter.create(name: "Kali's Shelter",
                             address: "123 Main St.",
                                city: "Denver",
@@ -45,6 +45,25 @@ describe "Next to every shelter, I see a link to edit that shelter's info" do
 
     visit '/shelters'
 
-    expect(page).to have_selector('Update Shelter', count: 2)
+    expect(page).to have_css('.update', count: 2)
+    expect(page).to have_css('.delete', count: 2)
+
+    click_link("Update Shelter", href: "/shelters/#{shelter_1.id}/edit")
+    fill_in('shelter[name]', :with => 'My Shelter')
+    fill_in('shelter[address]', :with => '123 Main St.')
+    fill_in('shelter[city]', :with => 'Los Gatos')
+    fill_in('shelter[state]', :with => 'CA')
+    fill_in('shelter[zip]', :with => '94245')
+    find('[type=submit]').click
+
+    expect(current_path).to eq("/shelters/#{shelter_1.id}")
+    expect(page).to have_content("My Shelter")
+    expect(page).to have_content("Los Gatos")
+    expect(page).to have_content("CA")
+    expect(page).to have_content("94245")
+
+    visit '/shelters'
+    click_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")
+    expect(page).not_to have_content("Pepper's Shelter")
   end
 end
