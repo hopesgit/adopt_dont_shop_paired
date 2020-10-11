@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "As a visitor" do
   describe "when I visit '/shelters'" do
-    it "I see the name of each shelter in the system" do
+    it "I see the name of each shelter in the system along with its full address" do
       shelter_1 = Shelter.create(name: "Kali's Shelter",
                               address: "123 Main St.",
                                  city: "Denver",
@@ -18,10 +18,12 @@ describe "As a visitor" do
 
       expect(page).to have_content("Shelters")
       expect(page).to have_content("Address: ")
+      expect(page).to have_content("#{shelter_1.name}")
       expect(page).to have_content("#{shelter_1.address}")
       expect(page).to have_content("#{shelter_1.city}")
       expect(page).to have_content("#{shelter_1.state}")
       expect(page).to have_content("#{shelter_1.zip}")
+      expect(page).to have_content("#{shelter_2.name}")
       expect(page).to have_content("#{shelter_2.address}")
       expect(page).to have_content("#{shelter_2.city}")
       expect(page).to have_content("#{shelter_2.state}")
@@ -62,9 +64,11 @@ describe "Next to every shelter, I see a link to edit that shelter's info and on
     expect(page).to have_content("Los Gatos")
     expect(page).to have_content("CA")
     expect(page).to have_content("94245")
+    expect(page).not_to have_content("Kali's Shelter")
 
     visit '/shelters'
     click_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")
+
     expect(page).not_to have_content("Pepper's Shelter")
   end
 end
@@ -74,5 +78,28 @@ describe "when I visit the Shelters Index Page" do
     visit '/shelters'
 
     expect(page).to have_link("Pets", href: '/pets')
+  end
+end
+
+describe "As a visitor" do
+  describe "when I visit '/shelters'" do
+    it "I see the name of each shelter in the system along with its full address" do
+      shelter_1 = Shelter.create(name: "Kali's Shelter",
+                              address: "123 Main St.",
+                                 city: "Denver",
+                                state: "CO",
+                                  zip: "12345")
+
+      visit '/shelters?order=alpha'
+
+      expect(page).to have_content("Shelters")
+      expect(page).to have_content("Address: ")
+      expect(page).to have_content("#{shelter_1.name}")
+      expect(page).to have_content("#{shelter_1.address}")
+      expect(page).to have_content("#{shelter_1.city}")
+      expect(page).to have_content("#{shelter_1.state}")
+      expect(page).to have_content("#{shelter_1.zip}")
+
+    end
   end
 end
