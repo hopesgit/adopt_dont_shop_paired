@@ -84,7 +84,7 @@ describe "Pets Index page" do
 end
 
 describe "when I visit '/pets'" do
-  it "every shelter name is a link to that shelter" do
+  it "every shelter name is a link to that shelter and every pet has a link to the pet index page" do
     shelter_1 = Shelter.create(name: "Kali's Shelter",
                             address: "123 Main St.",
                                city: "Denver",
@@ -111,6 +111,9 @@ describe "when I visit '/pets'" do
     visit "/pets"
 
     expect(page).to have_link("Kali's Shelter", href: "/shelters/#{shelter_1.id}")
+    expect(page).to have_link("Kali", href: "/pets/#{pet_1.id}")
+    expect(page).to have_link("Kali", href: "/pets/#{pet_2.id}")
+    expect(page).to have_link("Kali", href: "/pets/#{pet_3.id}")
 
     visit "/shelters/#{shelter_2.id}/pets"
     expect(page).to have_link("Dave's Shelter", href: "/shelters/#{shelter_2.id}")
