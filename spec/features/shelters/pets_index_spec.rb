@@ -70,3 +70,35 @@ describe "when I visit '/shelters/:shelter_id/pets'" do
     expect(page).not_to have_content("Pepper")
   end
 end
+
+describe "when I visit '/shelters/:shelter_id/pets'" do
+  it "every shelter name is a link to that shelter" do
+    shelter_1 = Shelter.create(name: "Kali's Shelter",
+                            address: "123 Main St.",
+                               city: "Denver",
+                              state: "CO",
+                                zip: "12345")
+    shelter_2 = Shelter.create(name: "Dave's Shelter",
+                            address: "456 Main St.",
+                               city: "Denver",
+                              state: "CO",
+                                zip: "80205")
+    pet_1 = shelter_1.pets.create(name: "Kali",
+                                   age: 2,
+                                   sex: "female",
+                                 image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+    pet_2 = shelter_1.pets.create(name: "Pepper",
+                                   age: 3,
+                                   sex: "male",
+                                 image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+    pet_3 = shelter_2.pets.create(name: "Boots",
+                                   age: 1,
+                                   sex: "female",
+                                 image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+
+    visit "/shelters/#{shelter_1.id}/pets"
+
+    expect(page).to have_link("Kali's Shelter", href: "/shelters/#{shelter_1.id}/pets")
+    expect(page).to have_link("Dave's Shelter", href: "/shelters/#{shelter_2.id}/pets")
+  end
+end
