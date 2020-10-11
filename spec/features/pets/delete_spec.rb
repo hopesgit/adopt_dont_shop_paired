@@ -15,14 +15,17 @@ describe "As a visitor" do
 
       visit "/pets/#{pet_1.id}"
 
-      expect(page).to have_link("Delete Pet", href: "/pets/#{pet_1.id}/delete")
+      expect(page).to have_content("#{pet_1.name}")
+      expect(page).to have_content("#{pet_1.age}")
+      expect(page).to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
 
+      expect(page).to have_link("Delete Pet", href: "/pets/#{pet_1.id}/delete")
       click_link("Delete Pet", href: "/pets/#{pet_1.id}/delete")
 
       expect(current_path).to eq("/pets")
       expect(page).not_to have_content("#{pet_1.name}")
       expect(page).not_to have_content("#{pet_1.age}")
-      expect(page).not_to have_content("#{pet_1.image}")
+      expect(page).not_to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
     end
   end
 end

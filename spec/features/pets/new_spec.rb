@@ -38,7 +38,9 @@ require 'rails_helper'
                                      sex: "male",
                                    image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
 
-      visit "/shelters/#{shelter_1.id}/pets/new"
+      visit "/shelters/#{shelter_1.id}/pets"
+
+      click_link("Create Pet")
 
       fill_in('name', :with => 'Skittles')
       fill_in('description', :with => 'fluffy dog')

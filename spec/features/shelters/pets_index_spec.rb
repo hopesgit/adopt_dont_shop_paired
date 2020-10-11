@@ -15,18 +15,18 @@ describe "As a visitor" do
       pet_2 = shelter_1.pets.create(name: "Pepper",
                                      age: 3,
                                      sex: "male",
-                                   image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+                                   image: "https://images.unsplash.com/photo-1548681528-6a5c45b66b42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80")
 
       visit "/shelters/#{shelter_1.id}/pets"
 
       expect(page).to have_content("#{pet_1.name}")
       expect(page).to have_content("#{pet_1.age}")
       expect(page).to have_content("#{pet_1.sex}")
+      expect(page).to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
       expect(page).to have_content("#{pet_2.name}")
       expect(page).to have_content("#{pet_2.age}")
       expect(page).to have_content("#{pet_2.sex}")
-      expect(page).to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
-      expect(page).to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
+      expect(page).to have_css("img[src*='https://images.unsplash.com/photo-1548681528-6a5c45b66b42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80']")
     end
   end
 end
