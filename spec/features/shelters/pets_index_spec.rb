@@ -98,7 +98,9 @@ describe "when I visit '/shelters/:shelter_id/pets'" do
 
     visit "/shelters/#{shelter_1.id}/pets"
 
-    expect(page).to have_link("Kali's Shelter", href: "/shelters/#{shelter_1.id}/pets")
-    expect(page).to have_link("Dave's Shelter", href: "/shelters/#{shelter_2.id}/pets")
+    expect(page).to have_link("Kali's Shelter", href: "/shelters/#{shelter_1.id}")
+
+    visit "/shelters/#{shelter_2.id}/pets"
+    expect(page).to have_link("Dave's Shelter", href: "/shelters/#{shelter_2.id}")
   end
 end

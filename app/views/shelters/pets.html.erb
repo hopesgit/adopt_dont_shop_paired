@@ -9,7 +9,10 @@
   <p>Sex: <%= pet.sex %></p>
   <img src="<%= pet.image %>" alt="pet photo">
   <p>Status: Adoptable</p>
-  <p>Located at: <%= pet.shelter.name %></p>
+
+  <p>Located at: </p>
+  <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter_id}" %>
+
   <p class="update"><%= link_to 'Update Pet', "/pets/#{pet.id}/edit" %></p>
   <p class="delete"><%= link_to 'Delete Pet', "/pets/#{pet.id}/delete" %></p>
 <% end %>
