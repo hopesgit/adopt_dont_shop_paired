@@ -64,6 +64,7 @@ describe "Next to every shelter, I see a link to edit that shelter's info and on
     expect(page).to have_content("Los Gatos")
     expect(page).to have_content("CA")
     expect(page).to have_content("94245")
+    expect(page).not_to have_content("Kali's Shelter")
 
     visit '/shelters'
     click_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")

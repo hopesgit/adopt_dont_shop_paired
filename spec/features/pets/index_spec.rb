@@ -69,13 +69,14 @@ describe "Pets Index page" do
     fill_in('age', :with => '4')
     fill_in('sex', :with => 'male')
     fill_in('image', :with => 'https://images.unsplash.com/photo-1548681528-6a5c45b66b42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80')
-    find('[type=submit]').click
+    click_on("Update Pet")
 
     expect(current_path).to eq("/pets/#{pet_1.id}")
     expect(page).to have_content("Boots")
     expect(page).to have_content("4")
     expect(page).to have_content("male")
     expect(page).to have_css("img[src*='https://images.unsplash.com/photo-1548681528-6a5c45b66b42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80']")
+    expect(page).not_to have_content("Kali")
 
     visit '/pets'
     click_link("Delete Pet", href: "/pets/#{pet_2.id}/delete")
