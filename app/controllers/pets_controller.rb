@@ -14,7 +14,7 @@ class PetsController < ApplicationController
       sex: params[:sex],
       image: params[:image],
       shelter_id: params[:id],
-      status: "Adoptable"
+      status: params[:status]
       })
     pet.save
     redirect_to "/shelters/#{params[:id]}/pets"
