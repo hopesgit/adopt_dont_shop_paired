@@ -45,7 +45,7 @@ describe "Pet index page" do
 end
 
 describe "Pets Index page" do
-  it "has a link to edit pet's info next to every pet, and when I click the link I should be taken to that pets edit page where I can update its information" do
+  it "has a link to edit pet's info next to every pet, and when I click the link I should be taken to that pets edit page where I can update its information, and if I click delete I am returned to the Pets Index Page where I no longer see that pet" do
     shelter_1 = Shelter.create(name: "Kali's Shelter",
                             address: "123 Main St.",
                                city: "Denver",
@@ -62,6 +62,7 @@ describe "Pets Index page" do
     visit '/pets'
 
     expect(page).to have_css('.update', count: 2)
+    expect(page).to have_css('.delete', count: 2)
 
     click_link("Update Pet", href: "/pets/#{pet_1.id}/edit")
     fill_in('name', :with => 'Boots')
@@ -75,5 +76,9 @@ describe "Pets Index page" do
     expect(page).to have_content("4")
     expect(page).to have_content("male")
     expect(page).to have_css("img[src*='https://images.unsplash.com/photo-1548681528-6a5c45b66b42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80']")
+
+    visit '/pets'
+    click_link("Delete Pet", href: "/pets/#{pet_2.id}/delete")
+    expect(page).not_to have_content("Pepper")
   end
 end
