@@ -1,5 +1,8 @@
 <h1>Update Pet Information</h1>
 
+<%= link_to 'Pets', '/pets' %><br>
+<%= link_to 'Shelters', '/shelters' %><br><br>
+
 <%= form_tag "/pets/#{params[:id]}", method: :patch do %>
     <%= label_tag :name %>
     <%= text_field_tag :name %><br/><br/>

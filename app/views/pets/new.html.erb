@@ -1,5 +1,8 @@
 <h1>Add a Pet for Adoption</h1>
 
+<%= link_to 'Pets', '/pets' %><br>
+<%= link_to 'Shelters', '/shelters' %><br><br>
+
 <%= form_tag "/shelters/#{params[:id]}/pets" do %>
     <%= label_tag :name %>
     <%= text_field_tag :name %><br/><br/>

@@ -60,3 +60,18 @@ describe "When I click the button to submit the form 'Update Pet'" do
     expect(page).to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
   end
 end
+
+describe "when I visit the Update Pet Page" do
+  it "there is a link at the top to the Pets Index Page and Shelters Index page" do
+    shelter_1 = Shelter.create(name: "Kali's Shelter",
+                            address: "123 Main St.",
+                               city: "Denver",
+                              state: "CO",
+                                zip: "12345")
+
+    visit "/shelters/#{shelter_1.id}/edit"
+
+    expect(page).to have_link("Pets", href: '/pets')
+    expect(page).to have_link("Shelters", href: '/shelters')
+  end
+end
