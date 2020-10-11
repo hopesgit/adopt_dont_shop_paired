@@ -17,15 +17,15 @@
   <h1>Edit Shelter Information</h1>
   <%= form_tag "/shelters/#{params[:id]}", method: :patch do %>
     <%= label_tag :name %>
-    <%= text_field_tag :name %><br/><br/>
+    <%= text_field_tag :name, @shelter.name %><br/><br/>
     <%= label_tag :address %>
-    <%= text_field_tag :address %><br/><br/>
+    <%= text_field_tag :address, @shelter.address %><br/><br/>
     <%= label_tag :city %>
-    <%= text_field_tag :city %><br/><br/>
+    <%= text_field_tag :city, @shelter.city %><br/><br/>
     <%= label_tag :state %>
-    <%= text_field_tag :state %><br/><br/>
+    <%= text_field_tag :state, @shelter.state %><br/><br/>
     <%= label_tag :zip %>
-    <%= text_field_tag :zip %><br/><br/>
+    <%= text_field_tag :zip, @shelter.zip %><br/><br/>
     <%= submit_tag 'Update Shelter' %>
   <% end %>
 </div>

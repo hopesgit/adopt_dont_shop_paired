@@ -15,15 +15,18 @@
 
 <div class="content">
   <h1>Pets</h1>
+  <ul>
   <h3><% @pets.each do |pet| %></h3>
-    <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+    <h2><li><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
     <p>Age: <%= pet.age %></p>
     <p>Sex: <%= pet.sex %></p>
     <img src="<%= pet.image %>" alt="pet photo" class="responsive">
+    <p>Status: <%= pet.status %></p>
     <p>Located at: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter_id}" %></p>
     <p class="update"><%= link_to 'Update Pet', "/pets/#{pet.id}/edit" %></p>
     <p class="delete"><%= link_to 'Delete Pet', "/pets/#{pet.id}/delete" %></p>
   <% end %>
+  </ul>
 </div>
 
 </body>

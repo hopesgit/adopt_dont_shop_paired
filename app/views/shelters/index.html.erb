@@ -10,6 +10,7 @@
 
 <div class="topnav">
   <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
 </div>
 
 <div class="content">
@@ -20,7 +21,7 @@
   <p>Address: <br><%= shelter.address %><br>
     <%= shelter.city %>, <%= shelter.state %> <%= shelter.zip %></p>
     <p class="update"><%= link_to 'Update Shelter', "/shelters/#{shelter.id}/edit" %></p>
-    <p class="delete"><%= link_to 'Delete Shelter', "/shelters/#{shelter.id}/delete" %></p><br>
+    <p class="delete"><%= link_to 'Delete Shelter', "/shelters/#{shelter.id}/delete"%></p>
     <% end %>
 </div>
 
