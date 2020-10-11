@@ -5,7 +5,7 @@
   <p>Age: <%= pet.age %></p>
   <p>Sex: <%= pet.sex %></p>
   <img src="<%= pet.image %>" alt="pet photo">
-  <p>Located at: <%= pet.shelter.name %></p>
+  <p>Located at: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter_id}" %></p>
   <p class="update"><%= link_to 'Update Pet', "/pets/#{pet.id}/edit" %></p>
   <p class="delete"><%= link_to 'Delete Pet', "/pets/#{pet.id}/delete" %></p>
 <% end %>
