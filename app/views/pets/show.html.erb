@@ -14,18 +14,16 @@
 </div>
 
 <div class="content">
-
-<h1><%= @pet.name %></h1>
-
-<img src="<%= @pet.image %>" alt="pet image" class="responsive">
-<p>Description: <%= @pet.description %></p>
-<p>Age: <%= @pet.age %></p>
-<p>Sex: <%= @pet.sex %></p>
-<p>Status: <%= @pet.status %></p>
-
-<p class="update"><%= link_to 'Update Pet', "/pets/#{@pet.id}/edit" %></p>
-<p class="delete"><%= link_to 'Delete Pet', "/pets/#{@pet.id}/delete" %></p>
-
+  <h1><%= @pet.name %></h1>
+  <img src="<%= @pet.image %>" alt="pet image" class="responsive">
+  <p>Description: <%= @pet.description %></p>
+  <p>Age: <%= @pet.age %></p>
+  <p>Sex: <%= @pet.sex %></p>
+  <p>Status: <%= @pet.status %></p>
+  <p class="update"><%= link_to 'Update Pet', "/pets/#{@pet.id}/edit" %></p>
+  <p class="delete"><%= link_to 'Delete Pet', "/pets/#{@pet.id}/delete" %></p>
 </div>
+
+</body>
 
 </html>
