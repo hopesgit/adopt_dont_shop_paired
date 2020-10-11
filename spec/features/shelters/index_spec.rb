@@ -29,3 +29,22 @@ describe "As a visitor" do
     end
   end
 end
+
+describe "Next to every shelter, I see a link to edit that shelter's info" do
+  it "when I click the link I should be taken to that shelters edit page where I can update its information" do
+    shelter_1 = Shelter.create(name: "Kali's Shelter",
+                            address: "123 Main St.",
+                               city: "Denver",
+                              state: "CO",
+                                zip: "12345")
+    shelter_2 = Shelter.create(name: "Pepper's Shelter",
+                            address: "678 Happy St.",
+                               city: "Boulder",
+                              state: "CO",
+                                zip: "54321")
+
+    visit '/shelters'
+
+    expect(page).to have_selector('Update Shelter', count: 2)
+  end
+end
