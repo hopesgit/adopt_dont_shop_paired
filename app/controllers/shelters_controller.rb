@@ -1,6 +1,9 @@
 class SheltersController < ApplicationController
   def index
     @shelters = Shelter.all
+    if !params[:order].nil?
+      @shelters.merge!(Shelter.order(:name))
+    end
   end
 
   def new

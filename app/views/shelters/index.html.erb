@@ -16,6 +16,8 @@
 <div class="content">
   <h1>Shelters</h1>
   <a href='/shelters/new' class="new">New Shelter</a><br><br>
+  <p>Sort by: <%= link_to "Alphabetically", shelters_path(order: 'alpha') %>
+  </p>
   <% @shelters.each do |shelter| %>
   <h3><a href="/shelters/<%= shelter.id %>"><%= shelter.name %></a></h3>
   <p>Address: <br><%= shelter.address %><br>
@@ -24,5 +26,7 @@
     <p class="delete"><%= link_to 'Delete Shelter', "/shelters/#{shelter.id}/delete"%></p>
     <% end %>
 </div>
+
+</body>
 
 </html>

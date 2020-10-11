@@ -80,3 +80,26 @@ describe "when I visit the Shelters Index Page" do
     expect(page).to have_link("Pets", href: '/pets')
   end
 end
+
+describe "As a visitor" do
+  describe "when I visit '/shelters'" do
+    it "I see the name of each shelter in the system along with its full address" do
+      shelter_1 = Shelter.create(name: "Kali's Shelter",
+                              address: "123 Main St.",
+                                 city: "Denver",
+                                state: "CO",
+                                  zip: "12345")
+
+      visit '/shelters?order=alpha'
+
+      expect(page).to have_content("Shelters")
+      expect(page).to have_content("Address: ")
+      expect(page).to have_content("#{shelter_1.name}")
+      expect(page).to have_content("#{shelter_1.address}")
+      expect(page).to have_content("#{shelter_1.city}")
+      expect(page).to have_content("#{shelter_1.state}")
+      expect(page).to have_content("#{shelter_1.zip}")
+
+    end
+  end
+end
