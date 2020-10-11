@@ -68,3 +68,11 @@ describe "Next to every shelter, I see a link to edit that shelter's info and on
     expect(page).not_to have_content("Pepper's Shelter")
   end
 end
+
+describe "when I visit the Shelters Index Page" do
+  it "there is a link at the top to the Pets Index Page" do
+    visit '/shelters'
+
+    expect(page).to have_link("Pets", href: '/pets')
+  end
+end
