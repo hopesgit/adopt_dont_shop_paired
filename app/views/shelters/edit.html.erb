@@ -1,18 +1,15 @@
 <h1>Edit Shelter Information</h1>
 
-<form action="/shelters/<%= @shelter.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <h3>Edit:</h3>
-  <p>Name:</p>
-  <input type='text' name='shelter[name]' value <%= @shelter.name %>/><br/>
-  <p>Address:</p>
-  <input type='text' name='shelter[address]' value <%= @shelter.address %>/"><br/>
-  <p>City:</p>
-  <input type='text' name='shelter[city]' value <%= @shelter.city %>/><br/>
-  <p>State:</p>
-  <input type='text' name='shelter[state]' value <%= @shelter.state %>/><br/>
-  <p>Zip:</p>
-  <input type='text' name='shelter[zip]' value <%= @shelter.zip %>/><br/><br/>
-  <input type='submit'/>
-</form>
+<%= form_tag "/shelters/#{params[:id]}", method: :patch do %>
+  <%= label_tag :name %>
+  <%= text_field_tag :name %><br/><br/>
+  <%= label_tag :address %>
+  <%= text_field_tag :address %><br/><br/>
+  <%= label_tag :city %>
+  <%= text_field_tag :city %><br/><br/>
+  <%= label_tag :state %>
+  <%= text_field_tag :state %><br/><br/>
+  <%= label_tag :zip %>
+  <%= text_field_tag :zip %><br/><br/>
+  <%= submit_tag 'Update Shelter' %>
+<% end %>

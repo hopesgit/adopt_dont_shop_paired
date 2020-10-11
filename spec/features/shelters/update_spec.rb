@@ -22,11 +22,11 @@ describe "As a visitor" do
       click_link("Update Shelter", href: "/shelters/#{shelter_1.id}/edit")
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}/edit")
-      expect(page).to have_field('shelter[name]')
-      expect(page).to have_field('shelter[address]')
-      expect(page).to have_field('shelter[city]')
-      expect(page).to have_field('shelter[state]')
-      expect(page).to have_field('shelter[zip]')
+      expect(page).to have_field('name')
+      expect(page).to have_field('address')
+      expect(page).to have_field('city')
+      expect(page).to have_field('state')
+      expect(page).to have_field('zip')
     end
   end
 end
@@ -43,12 +43,13 @@ describe "As a visitor" do
 
       visit "/shelters/#{shelter_1.id}/edit"
 
-      fill_in('shelter[name]', :with => 'My Shelter')
-      fill_in('shelter[address]', :with => '123 Main St.')
-      fill_in('shelter[city]', :with => 'Los Gatos')
-      fill_in('shelter[state]', :with => 'CA')
-      fill_in('shelter[zip]', :with => '94245')
-      find('[type=submit]').click
+      fill_in('name', :with => 'My Shelter')
+      fill_in('address', :with => '123 Main St.')
+      fill_in('city', :with => 'Los Gatos')
+      fill_in('state', :with => 'CA')
+      fill_in('zip', :with => '94245')
+
+      click_on 'Update Shelter'
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}")
       expect(page).to have_content("94245")

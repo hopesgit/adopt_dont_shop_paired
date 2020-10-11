@@ -49,12 +49,13 @@ describe "Next to every shelter, I see a link to edit that shelter's info and on
     expect(page).to have_css('.delete', count: 2)
 
     click_link("Update Shelter", href: "/shelters/#{shelter_1.id}/edit")
-    fill_in('shelter[name]', :with => 'My Shelter')
-    fill_in('shelter[address]', :with => '123 Main St.')
-    fill_in('shelter[city]', :with => 'Los Gatos')
-    fill_in('shelter[state]', :with => 'CA')
-    fill_in('shelter[zip]', :with => '94245')
-    find('[type=submit]').click
+    fill_in('name', :with => 'My Shelter')
+    fill_in('address', :with => '123 Main St.')
+    fill_in('city', :with => 'Los Gatos')
+    fill_in('state', :with => 'CA')
+    fill_in('zip', :with => '94245')
+
+    click_on 'Update Shelter'
 
     expect(current_path).to eq("/shelters/#{shelter_1.id}")
     expect(page).to have_content("My Shelter")
