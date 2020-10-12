@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   get '/', to: 'shelters#index'
   get '/shelters', to: 'shelters#index'
-  get 'shelter/?order=[alpha]', to: 'shelters#index'
 
   get '/shelters/new', to: 'shelters#new'
   post '/shelters', to: 'shelters#create'
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
 
   get '/pets', to: 'pets#index'
   get 'pets/:id', to: 'pets#show'
-  get '/shelters/:id/pets', to: 'shelters#pets'
+  get '/shelters/:id/pets', to: 'shelter_pets#index'
   get '/shelters/:id/pets/new', to: 'pets#new'
   post '/shelters/:id/pets', to: 'pets#create'
   get '/pets/:id/edit', to: 'pets#edit'
