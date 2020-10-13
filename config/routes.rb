@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   delete '/pets/:id', to: 'pets#destroy'
 
   get 'users/:id/show', to: 'users#show'
+  get '/users/new', to: 'users#new'
+  post '/users', to: 'users#create'
 end
