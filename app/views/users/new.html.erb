@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shelters</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+<h1>Create a new User</h1>
+<%= form_tag '/users' do %>
+  <%= label_tag :name %>
+  <%= text_field_tag :name %><br/><br/>
+  <%= label_tag :street_address %>
+  <%= text_field_tag :street_address %><br/><br/>
+  <%= label_tag :city %>
+  <%= text_field_tag :city %><br/><br/>
+  <%= label_tag :state %>
+  <%= text_field_tag :state %><br/><br/>
+  <%= label_tag :zip %>
+  <%= text_field_tag :zip %><br/><br/>
+  <%= submit_tag 'Submit' %>
+<% end %>
+</div>
+
+</body>
+
+</html>

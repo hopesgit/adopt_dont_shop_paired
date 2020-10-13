@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shelters</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+<h1><%= @user.name %></h1>
+<br><br>
+<p>Address: <br><%= @user.street_address %><br>
+  <%= @user.city %>, <%= @user.state %>, <%= @user.zip %></p>
+</div>
+
+</body>
+
+</html>
