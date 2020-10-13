@@ -20,6 +20,14 @@
     <%= @shelter.city %>, <%= @shelter.state %>, <%= @shelter.zip %></p>
   <p class="update"><%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %></p>
   <p class="delete"><%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}/delete" %></p>
+  <p>Reviews:</p><br>
+  <div class="content">
+    <% @shelter.reviews.each do |review| %>
+      <%= "#{review.user_name} User ID: #{review.user_id}" %>
+      <%= "Rating: #{review.rating}" %>
+      <%= review.content %>
+    <% end %>
+  </div>
 </div>
 
 </body>
