@@ -17,7 +17,7 @@ describe "As a visitor" do
       fill_in('zip', :with => '94115')
       click_on 'Submit'
 
-      # expect(current_path).should match(/\/users\/\d+\/show/)
+      expect(current_path).to match(/\/users\/\d+\/show/)
       expect(page).to have_content("Sally Peach")
       expect(page).to have_content("123 Main St.")
       expect(page).to have_content("San Francisco")
