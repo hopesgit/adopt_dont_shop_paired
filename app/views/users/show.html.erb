@@ -20,6 +20,17 @@
   <%= @user.city %>, <%= @user.state %>, <%= @user.zip %></p>
 </div>
 
+<div class="content">
+<h3>Reviews by <%= @user.name %>:</h3>
+<h3><% @user.reviews.each do |user| %></h3>
+  <h2><li><%= link_to "#{user.name}", "/users/#{user.id}" %></h2>
+  <p>Title: <%= user.title %></p>
+  <p>Rating: <%= user.rating %></p>
+  <p>Review: <%= user.content %></p>
+  <img src="<%= user.picture %>" alt="user photo" class="responsive">
+<% end %>
+</div>
+
 </body>
 
 </html>
