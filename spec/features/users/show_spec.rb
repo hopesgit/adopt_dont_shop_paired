@@ -9,13 +9,13 @@ describe "As a visitor" do
                           state: "CO",
                             zip: "80205")
 
-      visit "/users/#{user_1.id}/show"
+      visit "/users/#{user_1.id}"
 
       expect(page).to have_content("Sally Peach")
       expect(page).to have_content("123 Main St.")
       expect(page).to have_content("Denver")
       expect(page).to have_content("CO")
-      expect(page).to have_content("80205")  
+      expect(page).to have_content("80205")
     end
   end
 end

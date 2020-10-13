@@ -15,6 +15,6 @@ class UsersController < ApplicationController
       zip: params[:zip]
       })
     user.save
-    redirect_to "/users/#{user.id}/show"
+    redirect_to "/users/#{user.id}"
   end
 end

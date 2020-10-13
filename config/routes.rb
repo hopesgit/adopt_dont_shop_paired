@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/pets/:id/delete', to: 'pets#destroy'
   delete '/pets/:id', to: 'pets#destroy'
 
-  get 'users/:id/show', to: 'users#show'
   get '/users/new', to: 'users#new'
   post '/users', to: 'users#create'
+  get '/users/:id', to: 'users#show'
 end
