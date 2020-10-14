@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_13_213420) do
+ActiveRecord::Schema.define(version: 2020_10_14_143207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,10 +31,9 @@ ActiveRecord::Schema.define(version: 2020_10_13_213420) do
     t.integer "rating"
     t.string "content"
     t.string "picture"
-    t.bigint "user_id"
     t.bigint "shelter_id"
+    t.string "user_name"
     t.index ["shelter_id"], name: "index_reviews_on_shelter_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "shelters", force: :cascade do |t|
