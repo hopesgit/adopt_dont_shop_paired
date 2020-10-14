@@ -59,7 +59,6 @@ describe "when I visit the Shelters Show Page" do
                          shelter_id: "#{shelter_1.id}"})
 
     visit "/shelters/#{shelter_1.id}"
-    expect(page).to have_css('.update', count: 2)
 
     click_link("Edit Review", href: "/shelters/#{@shelter_1.id}/reviews/edit")
 

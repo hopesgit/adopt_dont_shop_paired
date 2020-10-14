@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Edit Review</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+  <h1>Update Review Information</h1>
+  <%= form_tag "/shelters/#{params[:id]}", method: :patch do %>
+      <%= label_tag :title %>
+      <%= text_field_tag :title, @review.title %><br/><br/>
+      <%= label_tag :rating %>
+      <%= text_field_tag :rating, @review.rating %><br/><br/>
+      <%= label_tag :content %>
+      <%= text_field_tag :content, @review.content %><br/><br/>
+      <%= label_tag :picture %>
+      <%= text_field_tag :picture, @review.picture %><br/><br/>
+      <%= submit_tag 'Submit' %>
+    <% end %>
+</div>
+
+</body>
+
+</html>

@@ -28,7 +28,8 @@
       <%= "User ID: #{review.user_id}" %><br>
       <%= review.title %><br>
       <%= "Rating: #{review.rating}" %><br>
-      <%= review.content %><br><br>
+      <%= review.content %><br>
+      <p class="update"><%= link_to 'Update Review', "/shelters/#{@shelter.id}/reviews/edit" %></p><br><br>
     <% end %>
   </div>
 </div>
