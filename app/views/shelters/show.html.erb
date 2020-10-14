@@ -16,7 +16,7 @@
 <div class="content">
   <h1><%= @shelter.name %></h1>
   <h3><%= link_to 'Pets at this Shelter', "/shelters/#{@shelter.id}/pets" %></h3>
-  <h3><%= link_to 'Add a Review!', "/shelters/#{@shelter.id}/shelters/new" %></h3><br><br>
+  <h3><%= link_to 'Add a Review!', "/shelters/#{@shelter.id}/reviews/new" %></h3><br><br>
   <p>Address: <br><%= @shelter.address %><br>
     <%= @shelter.city %>, <%= @shelter.state %>, <%= @shelter.zip %></p>
   <p class="update"><%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %></p>
@@ -24,10 +24,10 @@
   <p>Reviews:</p><br>
   <div class="content">
     <% @shelter.reviews.each do |review| %>
-      <%= "#{review.user_name} User ID: #{review.user_id}" %>
-      <%= "Rating: #{review.rating}" %>
-      <%= review.title %>
-      <%= review.content %>
+      <%= review.user_name %><br>
+      <%= "Rating: #{review.rating}" %><br>
+      <%= review.title %><br>
+      <%= review.content %><br><br>
     <% end %>
   </div>
 </div>

@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show'
 
   get '/shelters/:id/reviews/new', to: 'shelter_reviews#new'
+  patch '/shelters/:id/', to: 'shelter_reviews#create'
 end
