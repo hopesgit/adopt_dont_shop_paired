@@ -24,11 +24,13 @@
   <p>Reviews:</p><br>
   <div class="content">
     <% @shelter.reviews.each do |review| %>
-      <%= review.user_name %><br>
-      <%= "Rating: #{review.rating}" %><br>
+      <%= "Review by: #{review.user_name}" %><br>
+      <%= "User ID: #{review.user_id}" %><br>
       <%= review.title %><br>
+      <%= "Rating: #{review.rating}" %><br>
+      <%= review.content %><br>
       <%= image_tag "#{review.picture}" %><br>
-      <%= review.content %><br><br>
+      <p class="update"><%= link_to 'Edit Review', "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %></p><br><br>
     <% end %>
   </div>
 </div>
