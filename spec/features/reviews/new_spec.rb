@@ -38,7 +38,7 @@ describe "As a Visitor" do
       fill_in("Title", with: "Bark!")
       fill_in("Rating", with: 5)
       fill_in("Content", with: "So much cute!")
-      fill_in("Picture", with: "dog.png")
+      fill_in("Picture", with: "https://upload.wikimedia.org/wikipedia/commons/2/27/Finnish_Spitz_600.jpg")
       fill_in("Name", with: "#{user_1.name}")
       click_on("Submit")
     end
