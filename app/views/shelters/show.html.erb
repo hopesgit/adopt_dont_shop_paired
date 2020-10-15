@@ -15,11 +15,22 @@
 
 <div class="content">
   <h1><%= @shelter.name %></h1>
-  <h3><%= link_to 'Pets at this Shelter', "/shelters/#{@shelter.id}/pets" %><br><br></h3>
+  <h3><%= link_to 'Pets at this Shelter', "/shelters/#{@shelter.id}/pets" %></h3>
+  <h3><%= link_to 'Add a Review!', "/shelters/#{@shelter.id}/reviews/new" %></h3><br><br>
   <p>Address: <br><%= @shelter.address %><br>
     <%= @shelter.city %>, <%= @shelter.state %>, <%= @shelter.zip %></p>
   <p class="update"><%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %></p>
   <p class="delete"><%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}/delete" %></p>
+  <p>Reviews:</p><br>
+  <div class="content">
+    <% @shelter.reviews.each do |review| %>
+      <%= review.user_name %><br>
+      <%= "Rating: #{review.rating}" %><br>
+      <%= review.title %><br>
+      <%= image_tag "#{review.picture}" %><br>
+      <%= review.content %><br><br>
+    <% end %>
+  </div>
 </div>
 
 </body>

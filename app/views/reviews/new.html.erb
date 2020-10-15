@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shelters</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+  
+  <%= form_tag "/shelters/#{params[:id]}", method: :post do %>
+  <%= label_tag :title, "Title" %>
+  <%= text_field_tag :title %><br>
+
+  <%= label_tag :content, "Content" %>
+  <%= text_field_tag :content %><br>
+
+  <%= label_tag :rating, "Rating" %>
+  <%= number_field_tag :rating, 1, {min: 1, max:5, step:1} %><br>
+
+  <%= label_tag :user_name, "Name" %>
+  <%= text_field_tag :user_name %><br>
+
+  <%= label_tag :picture, "Picture" %>
+  <%= text_field_tag :picture %><br>
+
+  <%= submit_tag "Submit" %><br><br>
+<% end %>
+</div>
+
+</body>
+
+</html>
