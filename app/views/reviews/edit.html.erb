@@ -15,7 +15,7 @@
 
 <div class="content">
   <h1>Update Review Information</h1>
-  <%= form_tag "/shelters/#{params[:id]}", method: :patch do %>
+  <%= form_tag "/shelters/#{params[:shelter_id]}/reviews/#{@review.id}", method: :patch do %>
       <%= label_tag :title %>
       <%= text_field_tag :title, @review.title %><br/><br/>
       <%= label_tag :rating %>

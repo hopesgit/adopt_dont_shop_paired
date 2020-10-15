@@ -20,7 +20,7 @@ describe "As a visitor" do
 
       visit "/shelters/#{shelter_1.id}"
 
-      click_link("Edit Review", href: "/shelters/#{shelter_1.id}/reviews/edit")
+      click_link("Edit Review", href: "/shelters/#{shelter_1.id}/reviews/#{review.id}/edit")
       fill_in('title', :with => 'So many lovelies!')
       fill_in('rating', :with => 4)
       fill_in('content', :with => 'Place was neat')

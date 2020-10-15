@@ -14,8 +14,8 @@
 </div>
 
 <div class="content">
-  
-  <%= form_tag "/shelters/#{params[:id]}", method: :post do %>
+
+  <%= form_tag "/shelters/#{params[:id]}/reviews", method: :post do %>
   <%= label_tag :title, "Title" %>
   <%= text_field_tag :title %><br>
 

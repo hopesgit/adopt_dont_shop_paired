@@ -30,7 +30,7 @@
       <%= "Rating: #{review.rating}" %><br>
       <%= review.content %><br>
       <%= image_tag "#{review.picture}" %><br>
-      <p class="update"><%= link_to 'Edit Review', "/shelters/#{@shelter.id}/reviews/edit" %></p><br><br>
+      <p class="update"><%= link_to 'Edit Review', "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %></p><br><br>
     <% end %>
   </div>
 </div>

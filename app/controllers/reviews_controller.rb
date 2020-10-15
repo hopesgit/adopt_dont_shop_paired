@@ -7,32 +7,34 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
+    @review = Review.find(params[:review_id])
   end
 
   def create
+    shelter = Shelter.find(params[:shelter_id])
+    user = User.find_by(name: params[:user_name])
     review = Review.create!({
       title: params[:title],
       rating: params[:rating],
       content: params[:content],
       picture: params[:picture],
-      shelter_id: params[:id],
-      user_name: params[:user_name],
-      user_id: Review.user_id(params[:user_name])
+      shelter_id: shelter.id,
+      user_name: user.name,
+      user_id: user.id
       })
-    redirect_to "/shelters/#{review.shelter_id}"
+    redirect_to "/shelters/#{shelter.id}"
   end
 
   def update
-    review = Review.find(params[:id])
-    review.update({title: params[:title],
+    review = Review.find(params[:review_id])
+    review.update!({title: params[:title],
     rating: params[:rating],
     content: params[:content],
     picture: params[:picture],
-    shelter_id: params[:id],
+    shelter_id: params[:shelter_id],
     user_name: params[:user_name]})
     review.save
-    redirect_to "/shelters/#{review.shelter_id}"
+    redirect_to "/shelters/#{params[:shelter_id]}"
   end
 
 end
