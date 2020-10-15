@@ -27,13 +27,19 @@ describe "As a Visitor" do
                             state: "AR",
                             zip: 65423
                             })
+
+      user_1 = User.create(name: "Sally Peach",
+                           street_address: "123 Main St.",
+                           city: "Denver",
+                           state: "CO",
+                           zip: "80205")
       visit("/shelters/#{shelter.id}/reviews/new")
 
       fill_in("Title", with: "Bark!")
       fill_in("Rating", with: 5)
       fill_in("Content", with: "So much cute!")
       fill_in("Picture", with: "dog.png")
-      fill_in("Name", with: "Stick Brightling")
+      fill_in("Name", with: "#{user_1.name}")
       click_on("Submit")
     end
   end
