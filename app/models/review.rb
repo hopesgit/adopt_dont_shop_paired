@@ -1,8 +1,7 @@
 class Review < ApplicationRecord
-  belongs_to :user
   belongs_to :shelter
 
-  def user_name
-    User.find(user_id).name
+  def self.user_id(user_name)
+    User.select(:name == user_name).limit(1).first.id
   end
 end

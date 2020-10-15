@@ -29,7 +29,8 @@
       <%= review.title %><br>
       <%= "Rating: #{review.rating}" %><br>
       <%= review.content %><br>
-      <p class="update"><%= link_to 'Update Review', "/shelters/#{@shelter.id}/reviews/edit" %></p><br><br>
+      <%= image_tag "#{review.picture}" %><br>
+      <p class="update"><%= link_to 'Edit Review', "/shelters/#{@shelter.id}/reviews/edit" %></p><br><br>
     <% end %>
   </div>
 </div>
