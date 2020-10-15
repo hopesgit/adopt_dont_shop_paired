@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/pets/:id/delete', to: 'pets#destroy'
   delete '/pets/:id', to: 'pets#destroy'
 
+  get '/shelters/:id/reviews/new', to: 'reviews#new'
+  post '/shelters/:id', to: 'reviews#create'
   get '/shelters/:id/reviews/edit', to: 'reviews#edit'
   post '/shelters/:id', to: 'reviews#update'
 
@@ -29,6 +31,4 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
   get '/users/:id', to: 'users#show'
 
-  get '/shelters/:id/reviews/new', to: 'reviews#new'
-  post '/shelters/:id', to: 'reviews#create'
 end
