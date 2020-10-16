@@ -38,8 +38,12 @@ class SheltersController < ApplicationController
       state: params[:state],
       zip: params[:zip]
       })
-    shelter.save
-    redirect_to "/shelters/#{shelter.id}"
+    if shelter.save
+      redirect_to "/shelters/#{shelter.id}"
+    else
+      flash.now[:notice] = "Please fill in all fields to edit the shelter"
+      render :new
+    end
   end
 
   def destroy
