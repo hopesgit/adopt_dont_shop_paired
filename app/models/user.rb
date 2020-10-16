@@ -2,9 +2,10 @@ class User < ApplicationRecord
   has_many :reviews
 
   def average_rating
-    sum = self.reviews.sum do |review|
-      review.rating
+    if self.reviews.average(:rating)
+      self.reviews.average(:rating).round(1)
+    else
+      0
     end
-    (sum.to_f / self.reviews.count).round(1)
   end
 end
