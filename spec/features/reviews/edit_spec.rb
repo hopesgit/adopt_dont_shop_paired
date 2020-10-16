@@ -75,13 +75,13 @@ describe "As a visitor, when I visit the page to edit a review" do
       visit "/shelters/#{shelter.id}"
 
       click_link("Edit Review", href: "/shelters/#{shelter.id}/reviews/#{review.id}/edit")
-      fill_in('title', :with => '')
+      fill_in('title', :with => "")
       fill_in('rating', :with => 4)
       fill_in('content', :with => 'Place was neat')
       fill_in('picture', :with => 'https://images.unsplash.com/photo-1548681528-6a5c45b66b42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80')
       click_on("Submit")
 
-      expect(page).to have_content("Please fill in all fields to edit the shelter")
+      expect(page).to have_content("Please fill in all required fields to edit the review.")
       expect(page).to have_button("Edit Review")
     end
   end
