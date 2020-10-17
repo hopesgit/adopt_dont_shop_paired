@@ -20,23 +20,26 @@
   <%= @user.city %>, <%= @user.state %>, <%= @user.zip %></p>
 </div>
 
-<div id="highlights", class="content">
-  <h2>Review Highlights</h2>
-  <p>Highest rated:</p>
-  <% @user.highest_rating.find do |review| %>
-  <p>Title: <%= review.title %></p>
-  <p>Rating: <%= review.rating %></p>
-  <p>Review: <%= review.content %></p>
-  <img src="<%= review.picture %>" alt="review photo" class="responsive"><br><br>
-  <% end %>
-  <p>Lowest rated:</p>
-  <% @user.lowest_rating.find do |review| %>
-  <p>Title: <%= review.title %></p>
-  <p>Rating: <%= review.rating %></p>
-  <p>Review: <%= review.content %></p>
-  <img src="<%= review.picture %>" alt="review photo" class="responsive"><br><br>
-  <% end %>
-</div>
+<% if @user.reviews.count >= 2 %>
+  <div id="highlights", class="content">
+    <h2>Review Highlights</h2>
+    <p>Highest rated:</p>
+    <% @user.highest_rating.find do |review| %>
+    <p>Title: <%= review.title %></p>
+    <p>Rating: <%= review.rating %></p>
+    <p>Review: <%= review.content %></p>
+    <img src="<%= review.picture %>" alt="review photo" class="responsive"><br><br>
+    <% end %>
+    <p>Lowest rated:</p>
+    <% @user.lowest_rating.find do |review| %>
+    <p>Title: <%= review.title %></p>
+    <p>Rating: <%= review.rating %></p>
+    <p>Review: <%= review.content %></p>
+    <img src="<%= review.picture %>" alt="review photo" class="responsive"><br><br>
+    <% end %>
+  </div>
+  <% else %>
+<% end %>
 
 <div class="content">
 <h3>All Reviews by <%= @user.name %>:</h3>
