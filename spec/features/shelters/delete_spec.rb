@@ -15,17 +15,20 @@ describe "As a visitor" do
                                 state: "CO",
                                   zip: "80205")
 
-      visit "/shelters/#{shelter_1.id}"
+      visit "/shelters/#{shelter_2.id}"
 
-      click_link("Delete Shelter", href: "/shelters/#{shelter_1.id}/delete")
+      expect(page).to have_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")
+
+      click_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")
+      save_and_open_page
 
       expect(current_path).to eq("/shelters")
-      expect(page).not_to have_content("#{shelter_1.name}")
-      expect(page).not_to have_content("#{shelter_1.address}")
-      expect(page).not_to have_content("#{shelter_1.city}")
-      expect(page).to have_content("#{shelter_2.name}")
-      expect(page).to have_content("#{shelter_2.address}")
-      expect(page).to have_content("#{shelter_2.city}")
+      expect(page).not_to have_content("#{shelter_2.name}")
+      expect(page).not_to have_content("#{shelter_2.address}")
+      expect(page).not_to have_content("#{shelter_2.zip}")
+      expect(page).to have_content("#{shelter_1.name}")
+      expect(page).to have_content("#{shelter_1.address}")
+      expect(page).to have_content("#{shelter_1.zip}")
     end
   end
 end
