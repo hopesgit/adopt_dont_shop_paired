@@ -21,6 +21,12 @@
   <%= @user.city %>, <%= @user.state %>, <%= @user.zip %></p>
 </div>
 
+<div id="highlights", class="content">
+  <h1>Review Highlights</h1>
+  <p>Highest rated:</p>
+  <%= @user.best_rating %>
+</div>
+
 <div class="content">
 <h3>Reviews by <%= @user.name %>:</h3>
 <h3><% @user.reviews.each do |user| %></h3>

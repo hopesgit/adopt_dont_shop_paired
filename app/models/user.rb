@@ -8,4 +8,8 @@ class User < ApplicationRecord
       0
     end
   end
+
+  def best_rating
+    self.reviews.maximum(:rating)
+  end
 end
