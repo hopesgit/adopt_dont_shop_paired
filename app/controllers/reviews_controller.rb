@@ -35,7 +35,7 @@ class ReviewsController < ApplicationController
     user_name: params[:user_name]})
       redirect_to "/shelters/#{params[:shelter_id]}"
     else
-      flash[:notice] = "Please fill in all required fields to edit the review."
+      flash[:notice] = "Please fill out this field."
       redirect_to "/shelters/#{params[:shelter_id]}/reviews/#{params[:review_id]}/edit"
     end
   end

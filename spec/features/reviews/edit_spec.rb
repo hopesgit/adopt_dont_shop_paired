@@ -48,7 +48,7 @@ end
 
 describe "As a visitor, when I visit the page to edit a review" do
   describe "and I fail to enter a title, a rating, and/or content in the edit shelter review form, but still try to submit the form" do
-    it "I see a flash message indicating that I need to fill in a title, rating, and content in order to edit a shelter review and I'm returned to the edit form to edit that review" do
+    xit "I see a flash message indicating that I need to fill in a title, rating, and content in order to edit a shelter review and I'm returned to the edit form to edit that review" do
       user = User.create!({
                           name: "Truck Johnson",
                           street_address: "333 Balloon Way",
