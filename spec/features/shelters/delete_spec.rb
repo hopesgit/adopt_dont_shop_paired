@@ -20,7 +20,6 @@ describe "As a visitor" do
       expect(page).to have_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")
 
       click_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")
-      save_and_open_page
 
       expect(current_path).to eq("/shelters")
       expect(page).not_to have_content("#{shelter_2.name}")
