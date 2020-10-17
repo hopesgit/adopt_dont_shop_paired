@@ -23,14 +23,14 @@
 <% if @user.reviews.count >= 2 %>
   <div id="highlights", class="content">
     <h2>Review Highlights</h2>
-    <p>Highest rated:</p>
+    <h3>Highest rated:</h3>
     <% @user.highest_rating.find do |review| %>
     <p>Title: <%= review.title %></p>
     <p>Rating: <%= review.rating %></p>
     <p>Review: <%= review.content %></p>
     <img src="<%= review.picture %>" alt="review photo" class="responsive"><br><br>
     <% end %>
-    <p>Lowest rated:</p>
+    <h3>Lowest rated:</h3>
     <% @user.lowest_rating.find do |review| %>
     <p>Title: <%= review.title %></p>
     <p>Rating: <%= review.rating %></p>
