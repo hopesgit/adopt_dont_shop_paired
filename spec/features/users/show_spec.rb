@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "As a visitor" do
   describe "When I visit a User's show page" do
-    it "I see all that User's information including the User's Name, Street Address, City, State, Zip" do
+    xit "I see all that User's information including the User's Name, Street Address, City, State, Zip" do
       user_1 = User.create(name: "Sally Peach",
                  street_address: "123 Main St.",
                            city: "Denver",
@@ -18,7 +18,7 @@ describe "As a visitor" do
       expect(page).to have_content("80205")
     end
 
-    it "Then I see every review this User has written including the review's title, rating, and content" do
+    xit "Then I see every review this User has written including the review's title, rating, and content" do
       shelter_1 = Shelter.create(name: "Kali's Shelter",
                               address: "123 Main St.",
                                  city: "Denver",
@@ -45,7 +45,7 @@ describe "As a visitor" do
       expect(page).to have_css("img[src*='https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg']")
     end
 
-    it "Then I see the average rating of all of their reviews" do
+    xit "Then I see the average rating of all of their reviews" do
       shelter_1 = Shelter.create(name: "Kali's Shelter",
                               address: "123 Main St.",
                                  city: "Denver",

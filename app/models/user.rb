@@ -9,7 +9,13 @@ class User < ApplicationRecord
     end
   end
 
-  def best_rating
-    self.reviews.maximum(:rating)
+  def highest_rating
+    maximum = self.reviews.maximum(:rating)
+    self.reviews.where("rating = #{maximum}")
+  end
+
+  def lowest_rating
+    minimum = self.reviews.minimum(:rating)
+    self.reviews.where("rating = #{minimum}")
   end
 end
