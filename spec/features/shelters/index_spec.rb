@@ -34,12 +34,12 @@ end
 
 describe "Next to every shelter, I see a link to edit that shelter's info and one to delete the shelter" do
   it "when I click the edit link I should be taken to that shelters edit page where I can update its information, and if I click delete I am returned to the Shelter Index Page where I no longer see that shelter" do
-    shelter_1 = Shelter.create(name: "Kali's Shelter",
+    shelter_1 = Shelter.create!(name: "Kali's Shelter",
                             address: "123 Main St.",
                                city: "Denver",
                               state: "CO",
                                 zip: "12345")
-    shelter_2 = Shelter.create(name: "Pepper's Shelter",
+    shelter_2 = Shelter.create!(name: "Pepper's Shelter",
                             address: "678 Happy St.",
                                city: "Boulder",
                               state: "CO",
@@ -65,8 +65,23 @@ describe "Next to every shelter, I see a link to edit that shelter's info and on
     expect(page).to have_content("CA")
     expect(page).to have_content("94245")
     expect(page).not_to have_content("Kali's Shelter")
+  end
+
+
+  it "if I click delete I am returned to the Shelter Index Page where I no longer see that shelter" do
+    shelter_1 = Shelter.create!(name: "Kali's Shelter",
+                              address: "123 Main St.",
+                                 city: "Denver",
+                                state: "CO",
+                                  zip: "12345")
+    shelter_2 = Shelter.create!(name: "Pepper's Shelter",
+                              address: "678 Happy St.",
+                                 city: "Boulder",
+                                state: "CO",
+                                  zip: "54321")
 
     visit '/shelters'
+    
     click_link("Delete Shelter", href: "/shelters/#{shelter_2.id}/delete")
 
     expect(page).not_to have_content("Pepper's Shelter")
