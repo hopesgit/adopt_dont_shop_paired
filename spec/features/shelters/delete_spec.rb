@@ -9,10 +9,13 @@ describe "As a visitor" do
                                  city: "Denver",
                                 state: "CO",
                                   zip: "12345")
+      shelter_2 = Shelter.create(name: "Grant's Shelter",
+                              address: "427 W 34th St.",
+                                 city: "Denver",
+                                state: "CO",
+                                  zip: "80205")
 
       visit "/shelters/#{shelter_1.id}"
-
-      expect(page).to have_link("Delete Shelter", href: "/shelters/#{shelter_1.id}/delete")
 
       click_link("Delete Shelter", href: "/shelters/#{shelter_1.id}/delete")
 
@@ -20,6 +23,9 @@ describe "As a visitor" do
       expect(page).not_to have_content("#{shelter_1.name}")
       expect(page).not_to have_content("#{shelter_1.address}")
       expect(page).not_to have_content("#{shelter_1.city}")
+      expect(page).to have_content("#{shelter_2.name}")
+      expect(page).to have_content("#{shelter_2.address}")
+      expect(page).to have_content("#{shelter_2.city}")
     end
   end
 end
