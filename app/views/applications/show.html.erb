@@ -17,7 +17,7 @@
 
 <h1>Application Number: <%= @application.id %></h1>
 <h3>Applicant Name: <%= @application.find_user(@application.user_id).name %></h3>
-<p> Applicant Address: <%= @application.find_user(@application.user_id).street_address %><br>
+<p> Applicant Address: <br><%= @application.find_user(@application.user_id).street_address %><br>
  <%= @application.find_user(@application.user_id).city %>,
  <%= @application.find_user(@application.user_id).state %>
  <%= @application.find_user(@application.user_id).zip %></p>
