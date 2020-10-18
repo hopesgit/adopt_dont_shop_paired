@@ -16,8 +16,17 @@
 <div class="content">
 
 <h1>Application Number: <%= @application.id %></h1>
-<h3>Applicant Name: <%= @application.user_name(@application.user_id) %></h3>
-
+<h3>Applicant Name: <%= @application.find_user(@application.user_id).name %></h3>
+<p> Applicant Address: <%= @application.find_user(@application.user_id).street_address %><br>
+ <%= @application.find_user(@application.user_id).city %>,
+ <%= @application.find_user(@application.user_id).state %>
+ <%= @application.find_user(@application.user_id).zip %></p>
+<p>Description: <%= @application.description %></p>
+<p>Pet Names:</p>
+  <% @application.pets.each do |pet| %>
+    <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
+  <% end %>
+<p>Status: <%= @application.status %></p>
 </div>
 
 </body>
