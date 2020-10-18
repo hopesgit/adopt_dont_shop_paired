@@ -62,18 +62,23 @@ describe "As a visitor" do
       end
 
       it "next to each Pet's name after I search for a name I see a button to 'Adopt this Pet', I click it, and I'm taken back to to the application show page and I see the Pet I want to adopt listed on this application" do
-
+        @pet_3 = @shelter_1.pets.create!(name: "Nico",
+                                       age: 3,
+                                       sex: "female",
+                               description: "fun furball",
+                                    status: "Adoptable"
+                                        )
         visit "/applications/#{@application.id}"
 
-        fill_in("Pet Name", with: "Kali")
+        fill_in("Pet Name", with: "Nico")
         click_on("Search")
 
-        expect(page).to have_content("Kali")
+        expect(page).to have_content("Nico")
 
         click_on("Adopt this Pet")
 
         expect(current_path).to eq("/applications/#{@application.id}")
-        expect(page).to have_content("Kali")
+        expect(page).to have_content("Nico")
       end
     end
   end
