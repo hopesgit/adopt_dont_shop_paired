@@ -1,5 +1,7 @@
 require "rails_helper"
 
+User.destroy_all
+
 describe "As a Visitor" do
   describe "When I visit a shelter's show page" do
     it "has this link" do
@@ -41,6 +43,29 @@ describe "As a Visitor" do
       fill_in("Picture", with: "https://upload.wikimedia.org/wikipedia/commons/2/27/Finnish_Spitz_600.jpg")
       fill_in("Name", with: "#{user_1.name}")
       click_on("Submit")
+    end
+
+    it "gets filled out without all required fields" do
+      shelter = Shelter.create!({
+                            name: "Dog Lovers",
+                            address: "444 Dogbone Dr",
+                            city: "Heck",
+                            state: "AR",
+                            zip: 65423
+                            })
+
+      user_1 = User.create(name: "Sally Peach",
+                           street_address: "123 Main St.",
+                           city: "Denver",
+                           state: "CO",
+                           zip: "80205")
+    visit("/shelters/#{shelter.id}")
+    click_link("Add a Review!")
+
+    fill_in("Content", with: "Test")
+    click_on("Submit")
+    expect(current_path).to eq("/shelters/#{shelter.id}/reviews/new")
+    expect(subject.request.flash[:alert]).to_not be_nil
     end
   end
 end
