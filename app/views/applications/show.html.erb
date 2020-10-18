@@ -27,22 +27,33 @@
     <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
   <% end %>
 <p>Status: <%= @application.status %></p>
-<h3>Add a Pet to this Application</h3>
-<h4>Search for Pets:</h4>
-  <%= form_tag("/applications/#{@application.id}", method: :get) do %>
-    <%= label_tag :search, "Pet Name" %><br>
-    <%= text_field_tag(:search, params[:search]) %>
-    <%= submit_tag ("Search") %>
-  <% end %>
-</div>
 
-<div class="search-pets content">
-  <% if !@pets.nil? %>
-    <% @pets.each do |pet| %>
-      <%= link_to pet.name, "/pets/#{pet.id}" %><%= button_to "Adopt this Pet", "/applications/#{@application.id}", {method: :patch, params: { pet_id: "#{pet.id}" }
-} %></li>
+<% if @application.status == "In Progress"|| @application.status == nil %>
+  <h3>Add a Pet to this Application</h3>
+  <h4>Search for Pets:</h4>
+    <%= form_tag("/applications/#{@application.id}", method: :get) do %>
+      <%= label_tag :search, "Pet Name" %><br>
+      <%= text_field_tag(:search, params[:search]) %>
+      <%= submit_tag ("Search") %>
+    <% end %>
+
+  <div class="search-pets content">
+    <% if !@pets.nil? %>
+      <% @pets.each do |pet| %>
+        <%= link_to pet.name, "/pets/#{pet.id}" %><%= button_to "Adopt this Pet", "/applications/#{@application.id}", {method: :patch, params: { pet_id: "#{pet.id}" } } %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if !@application.pets.empty? %>
+    <%= form_tag "/applications/#{@application.id}", method: :patch do %>
+    <p>Please take a moment to tell us why you think you would be a good owner(s) for the listed pets: </p>
+    <%= label_tag :description, "Description" %>
+    <%= text_field_tag :description, "", required: true %>
+    <%= submit_tag "Submit" %>
     <% end %>
   <% end %>
+<% end %>
 </div>
 
 </body>
