@@ -55,7 +55,7 @@ describe "As a visitor" do
         visit "/applications/#{@application.id}"
 
         fill_in("Pet Name", with: "Kali")
-        click_on("Submit")
+        click_on("Search")
 
         expect(current_path).to eq("/applications/#{@application.id}")
         expect(page).to have_content("Kali")
