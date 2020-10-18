@@ -84,16 +84,16 @@ describe "As a visitor" do
       it "has a field to add description and submit application" do
         visit "/applications/#{@application.id}"
 
-        save_and_open_page
         fill_in("Description", with: "They'll love me, don't worry")
         click_on("Submit")
 
         expect(current_path).to eq("/applications/#{@application.id}")
         expect(page).to have_content("Description: They'll love me, don't worry")
         expect(page).to have_content("Status: Pending")
-        expect(page).to have_content("#{pet_1.name}")
-        expect(page).to have_content("#{pet_2.name}")
+        expect(page).to have_content("#{@pet_1.name}")
+        expect(page).to have_content("#{@pet_2.name}")
         expect(page).to_not have_content("Add a Pet to this Application")
+        save_and_open_page
       end
     end
   end
