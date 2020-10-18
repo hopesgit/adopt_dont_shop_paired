@@ -23,4 +23,14 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    pet = Pet.find(params[:pet_id])
+    application = Application.find(params[:id])
+    ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
+    redirect_to "/applications/#{application.id}"
+  end
+
 end
