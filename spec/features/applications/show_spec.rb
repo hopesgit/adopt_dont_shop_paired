@@ -60,5 +60,20 @@ describe "As a visitor" do
         expect(current_path).to eq("/applications/#{@application.id}")
         expect(page).to have_content("Kali")
       end
+
+      it "next to each Pet's name after I search for a name I see a button to 'Adopt this Pet', I click it, and I'm taken back to to the application show page and I see the Pet I want to adopt listed on this application" do
+
+        visit "/applications/#{@application.id}"
+
+        fill_in("Pet Name", with: "Kali")
+        click_on("Search")
+
+        expect(page).to have_content("Kali")
+
+        click_on("Adopt this Pet")
+
+        expect(current_path).to eq("/applications/#{@application.id}")
+        expect(page).to have_content("Kali")
+      end
     end
   end
