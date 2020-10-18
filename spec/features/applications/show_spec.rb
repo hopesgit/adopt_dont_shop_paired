@@ -28,7 +28,7 @@ describe "As a visitor" do
                                  image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80")
     @application = Application.create!(user_id: @user.id,
                         description: "I'll be a great pet owner!",
-                        status: "Pending")
+                        status: "In Progress")
     ApplicationPet.create!(pet_id: @pet_1.id, application_id: @application.id)
     ApplicationPet.create!(pet_id: @pet_2.id, application_id: @application.id)
   end
@@ -79,6 +79,21 @@ describe "As a visitor" do
 
         expect(current_path).to eq("/applications/#{@application.id}")
         expect(page).to have_content("Nico")
+      end
+
+      it "has a field to add description and submit application" do
+        visit "/applications/#{@application.id}"
+
+        save_and_open_page
+        fill_in("Description", with: "They'll love me, don't worry")
+        click_on("Submit")
+
+        expect(current_path).to eq("/applications/#{@application.id}")
+        expect(page).to have_content("Description: They'll love me, don't worry")
+        expect(page).to have_content("Status: Pending")
+        expect(page).to have_content("#{pet_1.name}")
+        expect(page).to have_content("#{pet_2.name}")
+        expect(page).to_not have_content("Add a Pet to this Application")
       end
     end
   end
