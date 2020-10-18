@@ -31,5 +31,7 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
   get '/users/:id', to: 'users#show'
 
-  get 'applications/:id', to: 'applications#show'
+  get '/applications/new', to: 'applications#new'
+  post '/applications', to: 'applications#create'
+  get '/applications/:id', to: 'applications#show'
 end

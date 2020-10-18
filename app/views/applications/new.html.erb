@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Applications</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+  <h1>New Application</h1>
+  <br>
+  <%= form_tag "/applications", method: :post do %>
+    <%= label_tag :user_name, "User Name" %><br>
+    <%= text_field_tag :user_name, "", required: true %>
+    <%= submit_tag "Submit" %>
+  <% end %>
+</div>
+
+</body>
+
+</html>

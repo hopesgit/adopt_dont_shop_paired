@@ -127,4 +127,10 @@ describe "when I visit the Pets Index Page" do
 
     expect(page).to have_link("Shelters", href: '/shelters')
   end
+
+  it "there is a link to start a new application" do
+    visit("/pets")
+
+    expect(page).to have_link("Start an Application")
+  end
 end
