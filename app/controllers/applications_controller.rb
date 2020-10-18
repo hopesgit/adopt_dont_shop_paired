@@ -9,9 +9,14 @@ class ApplicationsController < ApplicationController
 
   def create
     user = User.find_by(name: params[:user_name])
-    application = Application.create!(status: "In Progress",
-                                      user_id: user.id,
-                                      description: "")
-    redirect_to "/applications/#{application.id}"
+    if user.nil?
+      flash[:failure] = 'User could not be found. Please try again.'
+      redirect_to "/applications/new"
+    else
+      application = Application.create!(status: "In Progress",
+                                        user_id: user.id,
+                                        description: "")
+      redirect_to "/applications/#{application.id}"
+    end
   end
 end
