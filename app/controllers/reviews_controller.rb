@@ -13,16 +13,23 @@ class ReviewsController < ApplicationController
   def create
     shelter = Shelter.find(params[:shelter_id])
     user = User.find_by(name: params[:user_name])
-    review = Review.create!({
-      title: params[:title],
-      rating: params[:rating],
-      content: params[:content],
-      picture: params[:picture],
-      shelter_id: shelter.id,
-      user_name: user.name,
-      user_id: user.id
-      })
-    redirect_to "/shelters/#{shelter.id}"
+    # binding.pry
+    if user.nil?
+      flash[:warning] = "Error: Not all required fields filled out"
+      render :new
+    else
+      Review.create!({
+        title: params[:title],
+        rating: params[:rating],
+        content: params[:content],
+        picture: params[:picture],
+        shelter_id: shelter.id,
+        user_name: user.name,
+        user_id: user.id
+        })
+      flash[:success] = "Ya did it!"
+      redirect_to "/shelters/#{shelter.id}"
+    end
   end
 
   def update

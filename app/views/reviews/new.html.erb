@@ -15,18 +15,18 @@
 
 <div class="content">
 
-  <%= form_tag "/shelters/#{params[:id]}/reviews", method: :post do %>
+  <%= form_tag "/shelters/#{params[:shelter_id]}/reviews", method: :post do %>
   <%= label_tag :title, "Title" %>
-  <%= text_field_tag :title %><br>
+  <%= text_field_tag :title, "", required: true %><br>
 
   <%= label_tag :content, "Content" %>
-  <%= text_field_tag :content %><br>
+  <%= text_field_tag :content, "", required: true %><br>
 
   <%= label_tag :rating, "Rating" %>
-  <%= number_field_tag :rating, 1, {min: 1, max:5, step:1} %><br>
+  <%= number_field_tag :rating, 1, {min: 1, max:5, step:1, required: true} %><br>
 
   <%= label_tag :user_name, "Name" %>
-  <%= text_field_tag :user_name %><br>
+  <%= text_field_tag :user_name, "", required: true %><br>
 
   <%= label_tag :picture, "Picture" %>
   <%= text_field_tag :picture %><br>
