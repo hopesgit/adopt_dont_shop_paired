@@ -45,11 +45,13 @@
     <% end %>
   </div>
 
-  <%= form_tag "/applications/#{@application.id}", method: :patch do %>
-  <p>Please take a moment to tell us why you think you would be a good owner(s) for the listed pets: </p>
-  <%= label_tag :description, "Description" %>
-  <%= text_field_tag :description, "", required: true %>
-  <%= submit_tag "Submit" %>
+  <% if !@application.pets.empty? %>
+    <%= form_tag "/applications/#{@application.id}", method: :patch do %>
+    <p>Please take a moment to tell us why you think you would be a good owner(s) for the listed pets: </p>
+    <%= label_tag :description, "Description" %>
+    <%= text_field_tag :description, "", required: true %>
+    <%= submit_tag "Submit" %>
+    <% end %>
   <% end %>
 <% end %>
 </div>
