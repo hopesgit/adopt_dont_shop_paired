@@ -4,7 +4,7 @@ class Application < ApplicationRecord
 
   validates_presence_of :description, :status
 
-  def user_name(id)
-    User.find(id).name
+  def find_user(id)
+    User.find(id)
   end
 end

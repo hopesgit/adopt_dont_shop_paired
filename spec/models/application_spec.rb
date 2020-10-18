@@ -12,7 +12,7 @@ RSpec.describe Application, type: :model do
   end
 
   describe "methods" do
-    it "#user_name" do
+    it "#find_user" do
       user = User.create!({
                          name: "Truck Johnson",
                street_address: "333 Balloon Way",
@@ -41,8 +41,7 @@ RSpec.describe Application, type: :model do
                           description: "I'll be a great pet owner!",
                           status: "Pending")
 
-      expect(application.user_name(application.user_id)).to eq("Truck Johnson")
+      expect(application.find_user(application.user_id).name).to eq("Truck Johnson")
     end
-
   end
 end
