@@ -1,6 +1,25 @@
 require 'rails_helper'
 
 describe "As a visitor" do
+  describe "when I visit my application" do
+    it "does not have a desc field or submit button" do
+      user = User.create!({
+                         name: "Truck Johnson",
+               street_address: "333 Balloon Way",
+                         city: "Heck",
+                        state: "AR",
+                          zip: 65423
+                            })
+      application = Application.create!(user_id: @user.id,
+                                        description: "I'll be a great pet owner!",
+                                        status: "In Progress")
+
+      visit("/applications/new")
+      fill_in("User Name", with: "#{user.name}")
+      click_on("Submit")
+      expect(page).to_not have_content("Please take a moment")
+    end
+  end
   before(:each) do
     @user = User.create!({
                        name: "Truck Johnson",
