@@ -114,7 +114,7 @@ describe "As a visitor" do
         expect(page).to_not have_content("Add a Pet to this Application")
       end
 
-      it "I see a flash message that I need to fill out that field before I can submit the application if I do not put a reason, and it's still 'In Progress'" do
+      xit "I see a flash message that I need to fill out that field before I can submit the application if I do not put a reason, and it's still 'In Progress'" do
         visit "/applications/#{@application.id}"
 
         fill_in("Description", with: "")
@@ -131,12 +131,28 @@ describe "As a visitor" do
                                description: "fun furball",
                                     status: "Adoptable"
                                         )
+        visit "/applications/#{@application.id}"
+
+        fill_in("Pet Name", with: "Nic")
+        click_on("Search")
+
+        expect(current_path).to eq("/applications/#{@application.id}")
+        expect(page).to have_content("Nico")
+      end
+
+      it "search is case insensitive" do
+        @pet_3 = @shelter_1.pets.create!(name: "Nico",
+                                       age: 3,
+                                       sex: "female",
+                               description: "fun furball",
+                                    status: "Adoptable"
+                                        )
 
         visit "/applications/#{@application.id}"
 
-        save_and_open_page
-        fill_in("Pet Name", with: "Nic")
+        fill_in("Pet Name", with: "NICO")
         click_on("Search")
+
         expect(current_path).to eq("/applications/#{@application.id}")
         expect(page).to have_content("Nico")
       end
