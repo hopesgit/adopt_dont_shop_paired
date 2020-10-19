@@ -156,5 +156,22 @@ describe "As a visitor" do
         expect(current_path).to eq("/applications/#{@application.id}")
         expect(page).to have_content("Nico")
       end
+
+      it "search is case insensitive" do
+        @pet_3 = @shelter_1.pets.create!(name: "Nico",
+                                       age: 3,
+                                       sex: "female",
+                               description: "fun furball",
+                                    status: "Adoptable"
+                                        )
+
+        visit "/applications/#{@application.id}"
+
+        fill_in("Pet Name", with: "niCo")
+        click_on("Search")
+
+        expect(current_path).to eq("/applications/#{@application.id}")
+        expect(page).to have_content("Nico")
+      end
     end
   end
