@@ -112,7 +112,66 @@ describe "As a visitor" do
         expect(page).to have_content("#{@pet_1.name}")
         expect(page).to have_content("#{@pet_2.name}")
         expect(page).to_not have_content("Add a Pet to this Application")
-        save_and_open_page
+      end
+
+      xit "I see a flash message that I need to fill out that field before I can submit the application if I do not put a reason, and it's still 'In Progress'" do
+        visit "/applications/#{@application.id}"
+
+        fill_in("Description", with: "")
+        click_on("Submit")
+
+        expect(current_path).to eq("/applications/#{@application.id}")
+        expect(page).to have_content("Status: In Progress")
+      end
+
+      it "can find partial matches for names" do
+        @pet_3 = @shelter_1.pets.create!(name: "Nico",
+                                       age: 3,
+                                       sex: "female",
+                               description: "fun furball",
+                                    status: "Adoptable"
+                                        )
+        visit "/applications/#{@application.id}"
+
+        fill_in("Pet Name", with: "Nic")
+        click_on("Search")
+
+        expect(current_path).to eq("/applications/#{@application.id}")
+        expect(page).to have_content("Nico")
+      end
+
+      it "search is case insensitive" do
+        @pet_3 = @shelter_1.pets.create!(name: "Nico",
+                                       age: 3,
+                                       sex: "female",
+                               description: "fun furball",
+                                    status: "Adoptable"
+                                        )
+
+        visit "/applications/#{@application.id}"
+
+        fill_in("Pet Name", with: "NICO")
+        click_on("Search")
+
+        expect(current_path).to eq("/applications/#{@application.id}")
+        expect(page).to have_content("Nico")
+      end
+
+      it "search is case insensitive" do
+        @pet_3 = @shelter_1.pets.create!(name: "Nico",
+                                       age: 3,
+                                       sex: "female",
+                               description: "fun furball",
+                                    status: "Adoptable"
+                                        )
+
+        visit "/applications/#{@application.id}"
+
+        fill_in("Pet Name", with: "niCo")
+        click_on("Search")
+
+        expect(current_path).to eq("/applications/#{@application.id}")
+        expect(page).to have_content("Nico")
       end
     end
   end
