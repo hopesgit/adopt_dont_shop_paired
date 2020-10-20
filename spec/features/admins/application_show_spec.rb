@@ -37,12 +37,26 @@ describe "As a visitor" do
     it "has a button for each pet to be approved" do
       visit("/admin/applications/#{@application.id}")
 
-      # expect(page).to have_button("Approve Pet", href: "/admin/applications/#{@application.id}/#{@pet_1.id}")
-      # find("a[href='/admin/applications/#{@application.id}/#{@pet_1.id}']").click
-      save_and_open_page
+      within("#app-pet-#{@pet_1.id}") do
+        has_button?("Approve Pet")
+      end
+      within("#app-pet-#{@pet_2.id}") do
+        has_button?("Approve Pet")
+      end
+    end
+
+  describe "When I click the Approve Pet button" do
+    it "I'm taken back to the admin application show page and next to the pet that I approved, I do not see a button to approve this pet and instead I see an indicator next to the pet that they have been approved" do
+      visit("/admin/applications/#{@application.id}")
+
       within("#app-pet-#{@pet_1.id}") do
         click_on("Approve Pet")
       end
+
+      expect(current_path).to eq("/admin/applications/#{@application.id}")
+      expect(page).to have_content("Approved")
     end
+  end
+
   end
 end
