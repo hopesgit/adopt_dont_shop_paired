@@ -7,4 +7,12 @@ class Application < ApplicationRecord
   def find_user(id)
     User.find(id)
   end
+
+  def approved?
+    application_pets.all? {|pet| pet.application_pet_status == "Approved"}
+  end
+
+  def rejected?
+    application_pets.any? {|pet| pet.application_pet_status == "Rejected"}
+  end
 end
