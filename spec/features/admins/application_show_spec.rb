@@ -58,5 +58,18 @@ describe "As a visitor" do
     end
   end
 
+  describe "When I click the Reject Pet button" do
+    it "I'm taken back to the admin application show page and next to the pet that I rejected, I do not see a button to approve or reject this pet and instead I see an indicator next to the pet that they have been approved" do
+      visit("/admin/applications/#{@application.id}")
+# save_and_open_page
+      within("#app-pet-#{@pet_1.id}") do
+        click_on("Reject Pet")
+      end
+
+      expect(current_path).to eq("/admin/applications/#{@application.id}")
+      expect(page).to have_content("Rejected")
+    end
+  end
+
   end
 end
