@@ -23,8 +23,13 @@
   <p>Description: <%= @application.description %></p>
   <p>Pet Names:</p>
     <% @application.pets.each do |pet| %>
-      <div id="#app-pet-<%= pet.id %>">
-        <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %> <%= button_to "Approve Pet", "/admin/applications/#{@application.id}/#{pet.id}", method: :patch %></p>
+      <div id="app-pet-<%= pet.id %>">
+        <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+          <% if pet.application_pets.first.application_pet_status.nil? %>
+          <%= button_to "Approve Pet", "/admin/applications/#{@application.id}/#{pet.id}", method: :patch %></p>
+        <% else %>
+        <p>Pet Application Status: <%= pet.application_pets.first.application_pet_status %></p>
+        <% end %>
       </div>
     <% end %>
   <p>Status: <%= @application.status %></p>
