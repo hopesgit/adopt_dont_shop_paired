@@ -11,7 +11,7 @@ describe "As a visitor" do
                           zip: 65423
                             })
       application = Application.create!(user_id: @user.id,
-                                        description: "I'll be a great pet owner!",
+                                        description: "",
                                         status: "In Progress")
 
       visit("/applications/new")
@@ -46,7 +46,7 @@ describe "As a visitor" do
                                 status: "Adoptable",
                                  image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80")
     @application = Application.create!(user_id: @user.id,
-                        description: "I'll be a great pet owner!",
+                        description: "",
                         status: "In Progress")
     ApplicationPet.create!(pet_id: @pet_1.id, application_id: @application.id)
     ApplicationPet.create!(pet_id: @pet_2.id, application_id: @application.id)
@@ -81,7 +81,7 @@ describe "As a visitor" do
       end
 
       it "next to each Pet's name after I search for a name I see a button to 'Adopt this Pet', I click it, and I'm taken back to to the application show page and I see the Pet I want to adopt listed on this application" do
-        @pet_3 = @shelter_1.pets.create!(name: "Nico",
+        pet_3 = @shelter_1.pets.create!(name: "Nico",
                                        age: 3,
                                        sex: "female",
                                description: "fun furball",
@@ -114,10 +114,9 @@ describe "As a visitor" do
         expect(page).to_not have_content("Add a Pet to this Application")
       end
 
-      xit "I see a flash message that I need to fill out that field before I can submit the application if I do not put a reason, and it's still 'In Progress'" do
+      it "I see a flash message that I need to fill out that field before I can submit the application if I do not put a reason, and it's still 'In Progress'" do
         visit "/applications/#{@application.id}"
 
-        fill_in("Description", with: "")
         click_on("Submit")
 
         expect(current_path).to eq("/applications/#{@application.id}")

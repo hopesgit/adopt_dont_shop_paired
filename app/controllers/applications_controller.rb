@@ -16,9 +16,7 @@ class ApplicationsController < ApplicationController
       flash[:failure] = 'User could not be found. Please try again.'
       redirect_to "/applications/new"
     else
-      application = Application.create!(status: "In Progress",
-                                        user_id: user.id,
-                                        description: "")
+      application = Application.create!(status: "In Progress", user_id: user.id)
       redirect_to "/applications/#{application.id}"
     end
   end
@@ -27,12 +25,11 @@ class ApplicationsController < ApplicationController
   end
 
   def update
+    application = Application.find(params[:id])
     if params[:description].nil?
       pet = Pet.find(params[:pet_id])
-      application = Application.find(params[:id])
       ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
-    else
-      application = Application.find(params[:id])
+    elsif params[:description] != ""
       application.update(description: params[:description], status: "Pending")
     end
     redirect_to "/applications/#{application.id}"

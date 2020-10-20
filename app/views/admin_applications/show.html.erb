@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Applications</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="content">
+  <h1>Application Number: <%= @application.id %></h1>
+  <h3>Applicant Name: <%= @application.find_user(@application.user_id).name %></h3>
+  <p> Applicant Address: <br><%= @application.find_user(@application.user_id).street_address %><br>
+   <%= @application.find_user(@application.user_id).city %>,
+   <%= @application.find_user(@application.user_id).state %>
+   <%= @application.find_user(@application.user_id).zip %></p>
+  <p>Description: <%= @application.description %></p>
+  <p>Pet Names:</p>
+    <% @application.pets.each do |pet| %>
+      <div id="app-pet-<%= pet.id %>">
+        <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+          <% if pet.application_pets.first.application_pet_status.nil? %>
+          <%= button_to "Approve Pet", "/admin/applications/#{@application.id}/#{pet.id}", {method: :patch, params: {judge: "Approve"}} %>
+          <%= button_to "Reject Pet", "/admin/applications/#{@application.id}/#{pet.id}", {method: :patch, params: {judge: "Reject"}} %></p>
+        <% else %>
+        <p>Pet Application Status: <%= pet.application_pets.first.application_pet_status %></p>
+        <% end %>
+      </div>
+    <% end %>
+  <p>Status: <%= @application.status %></p>
+</div>
+
+</body>
+
+</html>
