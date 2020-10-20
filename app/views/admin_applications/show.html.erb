@@ -26,7 +26,8 @@
       <div id="app-pet-<%= pet.id %>">
         <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
           <% if pet.application_pets.first.application_pet_status.nil? %>
-          <%= button_to "Approve Pet", "/admin/applications/#{@application.id}/#{pet.id}", method: :patch %></p>
+          <%= button_to "Approve Pet", "/admin/applications/#{@application.id}/#{pet.id}", {method: :patch, params: {judge: "Approve"}} %>
+          <%= button_to "Reject Pet", "/admin/applications/#{@application.id}/#{pet.id}", {method: :patch, params: {judge: "Reject"}} %></p>
         <% else %>
         <p>Pet Application Status: <%= pet.application_pets.first.application_pet_status %></p>
         <% end %>
