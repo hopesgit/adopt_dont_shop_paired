@@ -75,7 +75,6 @@ describe "As a visitor" do
   describe "when I make my determinations, the application status is either accepted or rejected" do
     it "can change app status based on pet statuses" do
       visit("admin/applications/#{@application.id}")
-      save_and_open_page
 
       within("#app-pet-#{@pet_1.id}") do
         click_on("Approve Pet")
@@ -84,7 +83,6 @@ describe "As a visitor" do
       within("#app-pet-#{@pet_2.id}") do
         click_on("Approve Pet")
       end
-      save_and_open_page
 
       expect(current_path).to eq("/admin/applications/#{@application.id}")
       within("#app-status") do
