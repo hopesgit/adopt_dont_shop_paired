@@ -24,13 +24,16 @@
   <p>Reviews:</p><br>
   <div class="content">
     <% @shelter.reviews.each do |review| %>
-      <%= "Review by: #{review.user_name}" %><br>
-      <%= "User ID: #{review.user_id}" %><br>
-      <%= review.title %><br>
-      <%= "Rating: #{review.rating}" %><br>
-      <%= review.content %><br>
-      <%= image_tag "#{review.picture}" %><br>
-      <p class="update"><%= link_to 'Edit Review', "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %></p><br><br>
+      <div id="review-<%= review.id %>">
+        <%= "Review by: #{review.user_name}" %><br>
+        <%= "User ID: #{review.user_id}" %><br>
+        <%= review.title %><br>
+        <%= "Rating: #{review.rating}" %><br>
+        <%= review.content %><br>
+        <%= image_tag "#{review.picture}" %><br>
+        <p class="update"><%= link_to 'Edit Review', "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %></p>
+        <%= button_to 'Delete Review', "/shelters/#{@shelter.id}/reviews/#{review.id}", {method: :delete, class: "delete-button"} %><br><br>
+      </div>
     <% end %>
   </div>
 </div>

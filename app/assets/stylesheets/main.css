@@ -55,10 +55,10 @@ body {
   cursor: pointer;
 }
 
-.delete {
+.delete, .delete-button {
   background-color: #ffd1d1;
   border: none;
-  color: white;
+  color: blue;
   padding: 5px 5px;
   text-align: center;
   text-decoration: none;
