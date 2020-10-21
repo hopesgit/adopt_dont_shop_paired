@@ -28,7 +28,7 @@ class ApplicationsController < ApplicationController
     application = Application.find(params[:id])
     if params[:description].nil?
       pet = Pet.find(params[:pet_id])
-      ApplicationPet.create!(pet_id: pet.id, application_id: application.id)
+      ApplicationPet.create!(pet_id: pet.id, application_id: application.id, application_pet_status: "Pending")
     elsif params[:description] != ""
       application.update(description: params[:description], status: "Pending")
     end
