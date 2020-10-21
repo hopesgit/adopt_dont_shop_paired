@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shelters</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="/pets">Pets</a>
+  <a href="/shelters">Shelters</a>
+</div>
+
+<div class="search-applications content">
+  <ol>
+  <% @application_pets.each do |application_pet| %>
+    <li><%= link_to "#{application_pet.application.find_user(application_pet.application.user_id).name}", "/applications/#{application_pet.application.id}" %></li>
+  <% end %>
+  </ol>
+</div>
+
+</body>
+
+</html>
