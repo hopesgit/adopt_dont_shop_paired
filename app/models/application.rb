@@ -15,4 +15,10 @@ class Application < ApplicationRecord
   def rejected?
     application_pets.any? {|pet| pet.application_pet_status == "Rejected"}
   end
+
+  def adopt_pets
+    pets.map do |pet|
+      pet.adopt
+    end
+  end
 end
