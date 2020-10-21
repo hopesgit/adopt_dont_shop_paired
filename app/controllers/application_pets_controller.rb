@@ -11,4 +11,8 @@ class ApplicationPetsController < ApplicationController
     redirect_to "/admin/applications/#{params[:id]}"
   end
 
+  def index
+    @application_pets = ApplicationPet.where("pet_id = #{params[:pet_id]}")
+  end
+
 end
