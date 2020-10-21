@@ -74,5 +74,52 @@ describe Shelter, type: :model do
                                 })
       expect(shelter.average_rating).to eq(4)
     end
+
+    it "#total_applications" do
+      user_1 = User.create!({
+                            name: "Truck Johnson",
+                            street_address: "333 Balloon Way",
+                            city: "Heck",
+                            state: "AR",
+                            zip: 65423
+                            })
+
+      user_2 = User.create!({
+                            name: "Mary Shelley",
+                            street_address: "555 Stein Dr",
+                            city: "Olde Tymes",
+                            state: "PA",
+                            zip: 33333
+                            })
+      shelter = Shelter.create!({
+                            name: "Dog Lovers",
+                            address: "444 Dogbone Dr",
+                            city: "Heck",
+                            state: "AR",
+                            zip: 65423
+                            })
+      pet_1 = shelter.pets.create!(name: "Kali",
+                                     age: 2,
+                                     sex: "female",
+                             description: "Cute and sassy cat",
+                                  status: "Adoptable",
+                                   image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+      pet_2 = shelter.pets.create!(name: "Ryan",
+                                     age: 3,
+                                     sex: "male",
+                             description: "love bites are the only bites",
+                                  status: "Adoptable",
+                                   image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80")
+      application_1 = Application.create!(user_id: user_1.id,
+                          description: "I'll be a great pet owner!",
+                          status: "In Progress")
+      application_2 = Application.create!(user_id: user_2.id,
+                          description: "You know these doggos will be safe with me!",
+                          status: "In Progress")
+      ApplicationPet.create(pet_id: pet_1.id, application_id: application_1.id, application_pet_status: "")
+      ApplicationPet.create(pet_id: pet_2.id, application_id: application_2.id, application_pet_status: "")
+
+      expect(shelter.total_applications).to eq(2)
+    end
   end
 end
