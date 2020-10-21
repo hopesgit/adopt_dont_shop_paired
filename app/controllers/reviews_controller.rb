@@ -13,9 +13,8 @@ class ReviewsController < ApplicationController
   def create
     shelter = Shelter.find(params[:shelter_id])
     user = User.find_by(name: params[:user_name])
-    # binding.pry
-    if user.nil?
-      flash[:warning] = "Error: Not all required fields filled out"
+    if user.nil? || params[:title] == "" || params[:content] == ""
+      flash[:warning] = "Error: Form not filled out correctly."
       render :new
     else
       Review.create!({
@@ -27,7 +26,7 @@ class ReviewsController < ApplicationController
         user_name: user.name,
         user_id: user.id
         })
-      flash[:success] = "Ya did it!"
+      flash[:success] = "Review successfully created."
       redirect_to "/shelters/#{shelter.id}"
     end
   end
