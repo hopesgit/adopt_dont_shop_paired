@@ -1,4 +1,8 @@
 class ApplicationsController < ApplicationController
+  
+  def index
+    @applications = Application.all
+  end
 
   def show
     @application = Application.find(params[:id])
@@ -34,4 +38,5 @@ class ApplicationsController < ApplicationController
     end
     redirect_to "/applications/#{application.id}"
   end
+
 end

@@ -21,8 +21,10 @@
   <p>Sex: <%= @pet.sex %></p>
   <p>Status: <%= @pet.status %></p>
   <p class="update"><%= link_to 'Update Pet', "/pets/#{@pet.id}/edit" %></p>
-  <p class="delete"><%= link_to 'Delete Pet', "/pets/#{@pet.id}/delete" %></p>
+  <p class="delete"><%= link_to 'Delete Pet', "/pets/#{@pet.id}/delete" %></p><br><br>
+  <%= link_to "View All Applications", "/pets/#{@pet.id}/applications" %>
 </div>
+
 
 </body>
 

@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
   get '/users/:id', to: 'users#show'
 
+  get '/applications', to: 'applications#index'
   get '/applications/new', to: 'applications#new'
   post '/applications', to: 'applications#create'
   get '/applications/:id', to: 'applications#show'
@@ -40,4 +41,6 @@ Rails.application.routes.draw do
 
   get '/admin/applications/:id', to: 'admin_applications#show'
   patch '/admin/applications/:id/:pet_id', to: 'application_pets#update'
+
+  get '/pets/:pet_id/applications', to: 'application_pets#index'
 end
