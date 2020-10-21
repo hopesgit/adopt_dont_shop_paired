@@ -4,4 +4,11 @@ class Shelter < ApplicationRecord
 
   validates_presence_of :name
 
+  def total_pets
+    pets.count
+  end
+
+  def average_rating
+    reviews.average(:rating)
+  end
 end
