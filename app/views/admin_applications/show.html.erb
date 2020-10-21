@@ -25,12 +25,14 @@
     <% @application.pets.each do |pet| %>
       <div id="app-pet-<%= pet.id %>">
         <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
-          <% if pet.application_pets.first.application_pet_status.nil? %>
+          <% if pet.status == "Adoptable" && (!@application.approved? || !@application.rejected?) %>
             <%= button_to "Approve Pet", "/admin/applications/#{@application.id}/#{pet.id}", {method: :patch, params: {judge: "Approve"}} %>
             <%= button_to "Reject Pet", "/admin/applications/#{@application.id}/#{pet.id}", {method: :patch, params: {judge: "Reject"}} %></p>
+          <% elsif pet.status == "Adopted" && pet.app_status(@application.id) == nil %>
+            <p>This pet has already been approved for adoption.</p>
           <% else %>
-            <p>Pet Application Status: <%= pet.application_pets.first.application_pet_status %></p>
           <% end %>
+          <p>Pet Application Status: <%= pet.app_status(@application.id) %></p>
       </div>
     <% end %>
   <p id="app-status">Status: <%= @application.status %></p>
