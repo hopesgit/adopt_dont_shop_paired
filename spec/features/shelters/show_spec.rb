@@ -98,7 +98,6 @@ describe "when I visit the Shelters Show Page" do
 
     click_on("Submit")
 
-    # expect(current_path).to eq("/shelters/#{shelter_1.id}")
     expect(page).to have_content("So many lovelies!")
     expect(page).to have_content(4)
     expect(page).to have_content("Place was neat")
