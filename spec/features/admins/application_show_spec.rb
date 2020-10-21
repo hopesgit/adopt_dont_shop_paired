@@ -44,6 +44,7 @@ describe "As a visitor" do
         has_button?("Approve Pet")
       end
     end
+  end
 
   describe "When I click the Approve Pet button" do
     it "I'm taken back to the admin application show page and next to the pet that I approved, I do not see a button to approve this pet and instead I see an indicator next to the pet that they have been approved" do
@@ -71,5 +72,28 @@ describe "As a visitor" do
     end
   end
 
+  describe "when I make my determinations, the application status is either accepted or rejected" do
+    it "can change app status based on pet statuses" do
+      visit("admin/applications/#{@application.id}")
+
+      within("#app-pet-#{@pet_1.id}") do
+        click_on("Approve Pet")
+      end
+
+      within("#app-pet-#{@pet_2.id}") do
+        click_on("Approve Pet")
+      end
+
+      expect(current_path).to eq("/admin/applications/#{@application.id}")
+      within("#app-status") do
+        expect(page).to have_content("Status: Approved")
+      end
+    end
+
+    describe "When I visit the admin application show page for pending application" do
+      it "next to the pet I do not see a button to approve or reject them and instead I see a message that this pet has been approved for adoption" do
+        
+      end
+    end
   end
 end
