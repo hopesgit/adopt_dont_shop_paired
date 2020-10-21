@@ -97,7 +97,7 @@ describe "When I visit a pet applications index page for a pet that has no appli
     visit "pets/#{pet_1.id}"
 
     click_on("View All Applications")
-save_and_open_page
+
     expect(current_path).to eq("/pets/#{pet_1.id}/applications")
     expect(page).to have_content("There are no applications for this pet yet.")
   end
