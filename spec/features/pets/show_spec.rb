@@ -92,10 +92,8 @@ describe "When I visit a pets show page I see a link to view all applications fo
 
     visit "pets/#{pet_1.id}"
 
-    # save_and_open_page
     click_on("View All Applications")
 
-    # save_and_open_page
     expect(current_path).to eq("/pets/#{pet_1.id}/applications")
     expect(page).to have_content("#{user_1.name}")
     expect(page).to have_content("#{user_2.name}")
