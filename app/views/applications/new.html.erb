@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Shelters</title>
+<title>Applications</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -14,11 +14,13 @@
 </div>
 
 <div class="content">
-  <h1>Add a Pet for Adoption</h1>
-  <%= render partial: "new_pet_form", locals: {
-                            path: "/shelters/#{params[:id]}/pets",
-                            method: :post,
-                            button_text: 'Create Pet'} %>
+  <h1>New Application</h1>
+  <br>
+  <%= form_tag "/applications", method: :post do %>
+    <%= label_tag :user_name, "User Name" %><br>
+    <%= text_field_tag :user_name, "", required: true %>
+    <%= submit_tag "Submit" %>
+  <% end %>
 </div>
 
 </body>

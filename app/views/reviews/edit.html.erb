@@ -19,11 +19,13 @@
       <%= label_tag :title %>
       <%= text_field_tag :title, @review.title %><br/><br/>
       <%= label_tag :rating %>
-      <%= text_field_tag :rating, @review.rating %><br/><br/>
+      <%= number_field_tag :rating, 5, {min: 1, max:5, step:1} %><br/><br/>
       <%= label_tag :content %>
       <%= text_field_tag :content, @review.content %><br/><br/>
       <%= label_tag :picture %>
       <%= text_field_tag :picture, @review.picture %><br/><br/>
+      <%= label_tag :user_name %>
+      <%= text_field_tag :user_name, @review.user_name %><br/><br/>
       <%= submit_tag 'Submit' %>
     <% end %>
 </div>
