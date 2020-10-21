@@ -45,7 +45,7 @@ describe "As a Visitor" do
       click_on("Submit")
     end
 
-    it "gets filled out without all required fields" do
+    it "can't get filled out without all required fields" do
       shelter = Shelter.create!({
                             name: "Dog Lovers",
                             address: "444 Dogbone Dr",
@@ -64,8 +64,57 @@ describe "As a Visitor" do
 
     fill_in("Content", with: "Test")
     click_on("Submit")
-    expect(current_path).to eq("/shelters/#{shelter.id}/reviews/new")
-    expect(subject.request.flash[:alert]).to_not be_nil
+
+    expect(page).to have_content("Error: Form not filled out correctly.")
+    end
+
+    it "can't continue without a valid user" do
+      shelter = Shelter.create!({
+                            name: "Dog Lovers",
+                            address: "444 Dogbone Dr",
+                            city: "Heck",
+                            state: "AR",
+                            zip: 65423
+                            })
+
+      user_1 = User.create(name: "Sally Peach",
+                           street_address: "123 Main St.",
+                           city: "Denver",
+                           state: "CO",
+                           zip: "80205")
+      visit("/shelters/#{shelter.id}")
+      click_link("Add a Review!")
+
+      fill_in "Title", with: "It's a Bit Stinky in Here"
+      fill_in "Content", with: "But that's just how animals are, haha"
+      fill_in "Rating", with: 5
+      fill_in "Name", with: "Bob"
+      click_on "Submit"
+
+      expect(page).to have_content("Error: Form not filled out correctly.")
+    end
+
+    it "can actually be filled out correctly" do
+      shelter = Shelter.create!({
+                            name: "Dog Lovers",
+                            address: "444 Dogbone Dr",
+                            city: "Heck",
+                            state: "AR",
+                            zip: 65423
+                            })
+
+      user_1 = User.create(name: "Sally Peach",
+                           street_address: "123 Main St.",
+                           city: "Denver",
+                           state: "CO",
+                           zip: "80205")
+      visit("/shelters/#{shelter.id}")
+      click_link("Add a Review!")
+
+      fill_in("Content", with: "Test")
+      click_on("Submit")
+
+      expect(page).to have_content("Error: Form not filled out correctly.")
     end
   end
 end
