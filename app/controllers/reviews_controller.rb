@@ -33,10 +33,10 @@ class ReviewsController < ApplicationController
     picture: params[:picture],
     shelter_id: params[:shelter_id],
     user_name: params[:user_name]})
-    if review.save
+    if review.save && User.exists?(name: params[:user_name])
       redirect_to "/shelters/#{params[:shelter_id]}"
     else
-      flash[:notice] = "Please fill out this field."
+      flash[:notice] = "Please fill out all required fields and make sure user is valid."
       redirect_to "/shelters/#{params[:shelter_id]}/reviews/#{params[:review_id]}/edit"
     end
   end
