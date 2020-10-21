@@ -29,12 +29,12 @@ describe "As a visitor" do
     @application = Application.create!(user_id: @user.id,
                         description: "I'll be a great pet owner!",
                         status: "In Progress")
-    ApplicationPet.create!(pet_id: @pet_1.id, application_id: @application.id)
-    ApplicationPet.create!(pet_id: @pet_2.id, application_id: @application.id)
+    ApplicationPet.create!(pet_id: @pet_1.id, application_id: @application.id, application_pet_status: "Pending")
+    ApplicationPet.create!(pet_id: @pet_2.id, application_id: @application.id, application_pet_status: "Pending")
   end
 
   describe "when I visit the admin version of an application show page" do
-    it "has a button for each pet to be approved" do
+  it "has a button for each pet to be approved" do
       visit("/admin/applications/#{@application.id}")
 
       within("#app-pet-#{@pet_1.id}") do
@@ -51,6 +51,7 @@ describe "As a visitor" do
       visit("/admin/applications/#{@application.id}")
 
       within("#app-pet-#{@pet_1.id}") do
+        expect(page).to have_content("Pet Application Status: Pending")
         click_on("Approve Pet")
       end
 
@@ -64,6 +65,7 @@ describe "As a visitor" do
       visit("/admin/applications/#{@application.id}")
 
       within("#app-pet-#{@pet_1.id}") do
+        expect(page).to have_content("Pet Application Status: Pending")
         click_on("Reject Pet")
       end
 
@@ -89,11 +91,94 @@ describe "As a visitor" do
         expect(page).to have_content("Status: Approved")
       end
     end
+  end
+end
 
-    describe "When I visit the admin application show page for pending application" do
-      it "next to the pet I do not see a button to approve or reject them and instead I see a message that this pet has been approved for adoption" do
-        
-      end
-    end
+describe "When I visit the admin application show page for pending application" do
+  it "next to the pet I do not see a button to approve or reject them and instead I see a message that this pet has been approved for adoption" do
+    @user_1 = User.create!({
+                       name: "Truck Johnson",
+             street_address: "333 Balloon Way",
+                       city: "Heck",
+                      state: "AR",
+                        zip: 65423
+                          })
+    @user_2 = User.create!({
+                        name: "Brittany",
+              street_address: "123 Main St",
+                        city: "Boulder",
+                       state: "CO",
+                         zip: 80385
+                          })
+    @shelter_1 = Shelter.create(name: "Kali's Shelter",
+                             address: "123 Main St.",
+                                city: "Denver",
+                               state: "CO",
+                                 zip: "12345")
+    @pet_1 = @shelter_1.pets.create!(name: "Kali",
+                                   age: 2,
+                                   sex: "female",
+                           description: "Cute and sassy cat",
+                                status: "Adoptable",
+                                 image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+    @application_1 = Application.create!(user_id: @user_1.id,
+                                     description: "I'll be a great pet owner!",
+                                          status: "In Progress")
+    @application_2 = Application.create!(user_id: @user_2.id,
+                                     description: "I'm the best'",
+                                          status: "In Progress")
+    ApplicationPet.create!(pet_id: @pet_1.id, application_id: @application_1.id)
+    ApplicationPet.create!(pet_id: @pet_1.id, application_id: @application_2.id)
+
+    visit("/admin/applications/#{@application_1.id}")
+    click_on("Approve Pet")
+
+    visit("/admin/applications/#{@application_2.id}")
+
+    expect(page).to_not have_button("Approve Pet")
+    expect(page).to have_content("This pet has already been approved for adoption.")
+  end
+end
+
+describe "When I visit the admin application show page for pending application" do
+  it "next to the pet I do not see a button to approve or reject them and instead I see a message that this pet has been approved for adoption" do
+    @user_1 = User.create!({
+                       name: "Truck Johnson",
+             street_address: "333 Balloon Way",
+                       city: "Heck",
+                      state: "AR",
+                        zip: 65423
+                          })
+    @user_2 = User.create!({
+                        name: "Brittany",
+              street_address: "123 Main St",
+                        city: "Boulder",
+                       state: "CO",
+                         zip: 80385
+                          })
+    @shelter_1 = Shelter.create(name: "Kali's Shelter",
+                             address: "123 Main St.",
+                                city: "Denver",
+                               state: "CO",
+                                 zip: "12345")
+    @pet_1 = @shelter_1.pets.create!(name: "Kali",
+                                   age: 2,
+                                   sex: "female",
+                           description: "Cute and sassy cat",
+                                status: "Adopted",
+                                 image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg")
+    @application_1 = Application.create!(user_id: @user_1.id,
+                                     description: "I'll be a great pet owner!",
+                                          status: "Approved")
+    @application_2 = Application.create!(user_id: @user_2.id,
+                                     description: "I'm the best'",
+                                          status: "In Progress")
+    ApplicationPet.create!(pet_id: @pet_1.id, application_id: @application_1.id, application_pet_status: "Approved")
+    ApplicationPet.create!(pet_id: @pet_1.id, application_id: @application_2.id)
+
+    visit("/admin/applications/#{@application_2.id}")
+
+    expect(page).to_not have_button("Approve Pet")
+    expect(page).to have_content("This pet has already been approved for adoption.")
   end
 end
