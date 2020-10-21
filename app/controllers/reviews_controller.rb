@@ -27,12 +27,13 @@ class ReviewsController < ApplicationController
 
   def update
     review = Review.find(params[:review_id])
-    if review.update!({title: params[:title],
+    review.update({title: params[:title],
     rating: params[:rating],
     content: params[:content],
     picture: params[:picture],
     shelter_id: params[:shelter_id],
     user_name: params[:user_name]})
+    if review.save
       redirect_to "/shelters/#{params[:shelter_id]}"
     else
       flash[:notice] = "Please fill out this field."
